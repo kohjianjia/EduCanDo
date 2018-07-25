@@ -10,18 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2018_07_25_070549) do
+ActiveRecord::Schema.define(version: 2018_07_25_101452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "ratings", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_ratings_on_user_id"
-  end
 
   create_table "attendances", force: :cascade do |t|
     t.bigint "user_id"
@@ -41,6 +33,16 @@ ActiveRecord::Schema.define(version: 2018_07_25_070549) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.string "comment"
+    t.bigint "user_id"
+    t.bigint "attendance_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attendance_id"], name: "index_ratings_on_attendance_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -51,8 +53,6 @@ ActiveRecord::Schema.define(version: 2018_07_25_070549) do
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "sash_id"
-    t.integer "level", default: 0
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
@@ -60,4 +60,6 @@ ActiveRecord::Schema.define(version: 2018_07_25_070549) do
   add_foreign_key "attendances", "events"
   add_foreign_key "attendances", "users"
   add_foreign_key "events", "users"
+  add_foreign_key "ratings", "attendances"
+  add_foreign_key "ratings", "users"
 end
