@@ -1,11 +1,9 @@
 <%= form_for :session, url: session_path do |form| %>
   <div class="text-field text-center">
-    <h5 class="text-center"><%= form.label :email %>:</h5>
-    <%= form.text_field :email, type: 'email' %>
+    <%= form.text_field :email, type: 'email',placeholder:"Email" %>
   </div>
 
   <div class="password-field text-center">
-    <h5 class="text-center"><%= form.label :password %>:</h5>
     <%= form.password_field :password, placeholder:"Password" %>
   </div>
 

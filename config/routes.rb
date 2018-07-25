@@ -19,4 +19,6 @@ Rails.application.routes.draw do
 
   get "/dashboard" => "dashboard#index", as: "dashboard"
 
+  get "/attendance" => "attendance#index", as: "attendance"
+
 end
