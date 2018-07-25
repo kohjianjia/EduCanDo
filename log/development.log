@@ -1260,3 +1260,110 @@ Processing by DashboardController#index as HTML
 Completed 200 OK in 39ms (Views: 37.7ms | ActiveRecord: 0.6ms)
 
 eea01932f8a4312936c78bd3bbab20ea000c3931
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7905894817961536830)[0m
+  ↳ bin/rails:9
+  [1m[35m (20.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateMeritActions (20180725034432)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (85.0ms)[0m  [1m[35mCREATE TABLE "merit_actions" ("id" bigserial primary key, "user_id" integer, "action_method" character varying, "action_value" integer, "had_errors" boolean DEFAULT FALSE, "target_model" character varying, "target_id" integer, "target_data" text, "processed" boolean DEFAULT FALSE, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180725034432_create_merit_actions.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180725034432"]]
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateMeritActivityLogs (20180725034433)
+  [1m[35m (6.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (17.8ms)[0m  [1m[35mCREATE TABLE "merit_activity_logs" ("id" bigserial primary key, "action_id" integer, "related_change_type" character varying, "related_change_id" integer, "description" character varying, "created_at" timestamp)[0m
+  ↳ db/migrate/20180725034433_create_merit_activity_logs.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180725034433"]]
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateSashes (20180725034434)
+  [1m[35m (6.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (19.4ms)[0m  [1m[35mCREATE TABLE "sashes" ("id" bigserial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180725034434_create_sashes.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180725034434"]]
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateBadgesSashes (20180725034435)
+  [1m[35m (6.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (16.2ms)[0m  [1m[35mCREATE TABLE "badges_sashes" ("id" bigserial primary key, "badge_id" integer, "sash_id" integer, "notified_user" boolean DEFAULT FALSE, "created_at" timestamp)[0m
+  ↳ db/migrate/20180725034435_create_badges_sashes.rb:3
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE  INDEX  "index_badges_sashes_on_badge_id_and_sash_id" ON "badges_sashes"  ("badge_id", "sash_id")[0m
+  ↳ db/migrate/20180725034435_create_badges_sashes.rb:8
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX  "index_badges_sashes_on_badge_id" ON "badges_sashes"  ("badge_id")[0m
+  ↳ db/migrate/20180725034435_create_badges_sashes.rb:9
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_badges_sashes_on_sash_id" ON "badges_sashes"  ("sash_id")[0m
+  ↳ db/migrate/20180725034435_create_badges_sashes.rb:10
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180725034435"]]
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateScoresAndPoints (20180725034436)
+  [1m[35m (12.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (15.2ms)[0m  [1m[35mCREATE TABLE "merit_scores" ("id" bigserial primary key, "sash_id" bigint, "category" character varying DEFAULT 'default')[0m
+  ↳ db/migrate/20180725034436_create_scores_and_points.rb:3
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_merit_scores_on_sash_id" ON "merit_scores"  ("sash_id")[0m
+  ↳ db/migrate/20180725034436_create_scores_and_points.rb:3
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "merit_score_points" ("id" bigserial primary key, "score_id" bigint, "num_points" integer DEFAULT 0, "log" character varying, "created_at" timestamp)[0m
+  ↳ db/migrate/20180725034436_create_scores_and_points.rb:8
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_merit_score_points_on_score_id" ON "merit_score_points"  ("score_id")[0m
+  ↳ db/migrate/20180725034436_create_scores_and_points.rb:8
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180725034436"]]
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to AddMeritFieldsToUsers (20180725034554)
+  [1m[35m (18.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (16.9ms)[0m  [1m[35mALTER TABLE "users" ADD "sash_id" integer[0m
+  ↳ db/migrate/20180725034554_add_merit_fields_to_users.rb:3
+  [1m[35m (25.9ms)[0m  [1m[35mALTER TABLE "users" ADD "level" integer DEFAULT 0[0m
+  ↳ db/migrate/20180725034554_add_merit_fields_to_users.rb:4
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180725034554"]]
+  ↳ bin/rails:9
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7905894817961536830)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (6.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7905894817961536830)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateRatings (20180725041452)
+  [1m[35m (7.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (34.8ms)[0m  [1m[35mCREATE TABLE "ratings" ("id" bigserial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" bigint)[0m
+  ↳ db/migrate/20180725041452_create_ratings.rb:3
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_ratings_on_user_id" ON "ratings"  ("user_id")[0m
+  ↳ db/migrate/20180725041452_create_ratings.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180725041452"]]
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (12.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7905894817961536830)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
