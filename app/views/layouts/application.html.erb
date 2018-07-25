@@ -5,31 +5,15 @@
   <%= csrf_meta_tag %>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+
 </head>
 <body>
-<!--   <div id="header">
-    <% if signed_in? -%>
-      <%= current_user.email %>
-      <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
 
-    <% elsif request.path_info == '/sign_up' %>
-      <%= link_to t(".home"), root_path %>
-      <%= link_to t(".sign_in"), sign_in_path %>
-
-    <% elsif request.path_info == '/sign_in' %>
-      <%= link_to t(".home"), root_path %>
-      <%= link_to t(".sign_up"), sign_up_path %>
-
-    <% elsif request.path_info == '/passwords/new' %>
-      <%= link_to t(".home"), root_path %>
-      <%= link_to t(".sign_up"), sign_up_path %>
-      <%= link_to t(".sign_in"), sign_in_path %>
-      
-    <% else -%>
-      <%= link_to t(".sign_up"), sign_up_path %>
-      <%= link_to t(".sign_in"), sign_in_path %>
-    <% end -%>
-  </div> -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-info">
   <a class="navbar-brand" href="/">EduCanDo</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,28 +24,42 @@
     <ul class="navbar-nav mr-auto">
       <% if signed_in? -%>
         <li class="nav-item">
-          <%= link_to t("Welcome back, " + current_user.first_name), dashboard_path, :class => "nav-link"%>
+          <%= link_to "Welcome back, #{current_user.first_name}", dashboard_path, :class => "nav-link"%>
+        </li>
+      <% elsif request.path_info == '/sign_up/student' || request.path_info == '/sign_up/staff' %>
+        <li class="nav-item">
+          <%= link_to t(".sign_in"), sign_in_path, :class => "nav-link" %>
         </li>
       <% elsif request.path_info == '/sign_in' %>
         <li class="nav-item">
-          <%= link_to t(".sign_up"), sign_up_path, :class => "nav-link" %>
+          <%= link_to t(".sign_up_as_student"), sign_up_student_path, :class => "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t(".sign_up_as_staff"), sign_up_staff_path, :class => "nav-link" %>
         </li>
       <% elsif request.path_info == '/passwords/new' %>
         <li class="nav-item">
-          <%= link_to t(".sign_up"), sign_up_path, :class => "nav-link" %>
+          <%= link_to t(".sign_up_as_student"), sign_up_student_path, :class => "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t(".sign_up_as_staff"), sign_up_staff_path, :class => "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to t(".sign_in"), sign_in_path, :class => "nav-link" %>
         </li>
       <% else -%>
         <li class="nav-item">
-          <%= link_to t(".sign_up"), sign_up_path, :class => "nav-link" %>
+          <%= link_to t(".sign_up_as_student"), sign_up_student_path, :class => "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to t(".sign_up_as_staff"), sign_up_staff_path, :class => "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to t(".sign_in"), sign_in_path, :class => "nav-link" %>
         </li>  
       <% end -%>
     </ul>
+
     <form class="form-inline my-2 my-lg-0">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -78,13 +76,6 @@
   </div>
 </nav>
 
-<!--   <div id="flash">
-    <% flash.each do |key, value| -%>
-      <div id="flash_<%= key %>"><%=h value %></div>
-    <% end %>
-  </div> -->
-
-
     <!-- Flash messages -->
   <% flash.each do |key, value| %>
     <div class="container-fluid alert alert-danger-<%= key %>">
@@ -96,8 +87,6 @@
   <!-- End of Flash messages -->
   <%= yield %>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
 </body>
 </html>
