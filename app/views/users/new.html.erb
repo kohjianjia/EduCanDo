@@ -4,7 +4,11 @@
   <%= form_for @user do |form| %>
     <%= render partial: '/users/form', object: form %>
 
-    <%= form.hidden_field :role, :value => "student" %>
+    <% if request.path_info == '/sign_up/student' %>
+    	<%= form.hidden_field :role, :value => "student" %>
+    <% else %>
+    	<%= form.hidden_field :role, :value => "staff" %>
+    <% end %>
 
     <div class="submit-field">
       <%= form.submit %>

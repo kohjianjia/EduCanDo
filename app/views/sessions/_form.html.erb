@@ -1,19 +1,19 @@
 <%= form_for :session, url: session_path do |form| %>
-  <div class="text-field">
-    <%= form.label :email %>
+  <div class="text-field text-center">
+    <h5 class="text-center"><%= form.label :email %>:</h5>
     <%= form.text_field :email, type: 'email' %>
   </div>
 
-  <div class="password-field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
+  <div class="password-field text-center">
+    <h5 class="text-center"><%= form.label :password %>:</h5>
+    <%= form.password_field :password, placeholder:"Password" %>
   </div>
 
-  <div class="submit-field">
-    <%= form.submit %>
+  <div class="submit-field my-2 text-center">
+    <%= form.submit :class => "btn btn-primary " %>
   </div>
 
-  <div class="other-links">
+  <div class="other-links text-center">
     <%= link_to t(".forgot_password"), new_password_path %>
   </div>
 <% end %>
