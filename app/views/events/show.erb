@@ -1,10 +1,25 @@
 <div class="col-md-4 mt-3">
-	<h3 class="text-capitalize">Category:</h3>
-	<p><%= @event.category %></p>
+	<h4 class="text-capitalize">Title: <%= @event.title %></h4>
 </div>
 
 <div class="col-md-4 mt-3">
-	<h3 class="text-capitalize">Description:</h3>
+	<h5 class="text-capitalize">Category: <%= @event.category %></h5>
+</div>
+
+<div class="col-md-4 mt-3">
+	<h5 class="text-capitalize">Venue: <%= @event.venue %></h5>
+</div>
+
+<div class="col-md-4 mt-3">
+	<h5 class="text-capitalize">Time: <%= @event.start_time %> to <%= @event.end_time %></h5>
+</div>
+
+<div class="col-md-4 mt-3">
+	<h5 class="text-capitalize">Date: <%= @event.event_date %></h5>
+</div>
+
+<div class="col-md-4 mt-3">
+	<h5 class="text-capitalize">Description:</h5>
 	<p><%= @event.description %></p>
 </div>
 
@@ -16,3 +31,7 @@
 	 	method: :delete, data: {confirm: 'Are you sure?'} %>
 	<% end %>
 <% end %>
+
+<hr />
+
+<%= link_to 'View All Events', events_path %>

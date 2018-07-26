@@ -12,4 +12,12 @@
 			<% end %>
 		</div>
 	</div>
+
+	<div>
+		<h5>Your events: </h5>
+		<% @user.events.each do |event| %>
+			<%= event.title %> <br />
+		<% end %>
+	</div>
 </div>
+
