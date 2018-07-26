@@ -1,12 +1,12 @@
 <div class="container mt-3">
 	<div class="row">
 		<div class="col-md-8 text-justify">
-			<p><strong>Full Name: </strong><%= @user.first_name + " " + @user.last_name %></p>
+			<p class="text-capitalize"><strong>Full Name: </strong><%= @user.first_name + " " + @user.last_name %></p>
 			<p><strong>Email: </strong><%= @user.email %></p>
 			<p><strong>Role: </strong><%= @user.role %></p>
 			<% if @user.role == "student" %>
-				<p><strong>Total Points: </strong></p>
-				<p><strong>Level: </strong></p>
+				<p><strong>Total Points: <%= @user.point %></strong></p>
+				<p><strong>Level: <%= @user.level %></strong></p>
 			<% else %>
 				<p><strong>Rating: </strong></p>
 			<% end %>

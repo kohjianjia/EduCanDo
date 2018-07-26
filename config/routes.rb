@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get "/attendance" => "attendance#index", as: "attendance"
 
+  get 'faq' => "faq#index", as: "faq"
+
   resources :events, controller: "events"
 
 end
