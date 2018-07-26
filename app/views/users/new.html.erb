@@ -1,19 +1,21 @@
-<div id="clearance" class="sign-up" style="margin-top: 30vh">
-  <h2 class="text-center my-2"><%= t(".title") %></h2>
-  <h4 class="text-center my-2" style="font-family: impact" >EduCanDo</h4> 
+<div id="clearance" class="sign-up" style="margin-top: 23vh">
+  <div style="border-style: groove; background-color: lightblue; width: 300px; padding: 50px; margin: auto;">
+    <h2 class="text-center my-2"><%= t(".title") %></h2>
+    <h4 class="text-center my-2" style="font-family: impact" >EduCanDo</h4> 
 
-  <%= form_for @user do |form| %>
-    <%= render partial: '/users/form', object: form %>
+    <%= form_for @user do |form| %>
+      <%= render partial: '/users/form', object: form %>
 
-    <% if request.path_info == '/sign_up/student' %>
-    	<%= form.hidden_field :role, :value => "student" %>
-    <% else %>
-    	<%= form.hidden_field :role, :value => "staff" %>
+      <% if request.path_info == '/sign_up/student' %>
+      	<%= form.hidden_field :role, :value => "student" %>
+      <% else %>
+      	<%= form.hidden_field :role, :value => "staff" %>
+      <% end %>
+
+      <div class="submit-field text-center my-2 ">
+        <%= form.submit :class => "btn btn-primary " %>
+      </div>
+      
     <% end %>
-
-    <div class="submit-field text-center my-2 ">
-      <%= form.submit :class => "btn btn-primary " %>
-    </div>
-    
-  <% end %>
+  </div>
 </div>
