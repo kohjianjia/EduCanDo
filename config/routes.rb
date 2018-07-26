@@ -23,4 +23,6 @@ Rails.application.routes.draw do
 
   get 'faq' => "faq#index", as: "faq"
 
+  resources :events, controller: "events"
+
 end
