@@ -19,10 +19,12 @@ Rails.application.routes.draw do
 
   get "/dashboard" => "dashboard#index", as: "dashboard"
 
-  get "/attendance" => "attendance#index", as: "attendance"
+  
 
   get 'faq' => "faq#index", as: "faq"
 
-  resources :events, controller: "events"
+  resources :events, controller: "events" do
+    resources :attendances, only: [:index, :create]
+  end
 
 end
