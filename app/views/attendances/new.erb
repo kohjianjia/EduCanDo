@@ -1,0 +1,10 @@
+<h1>Attendance</h1>
+<% if !(Attendance.find_by(user_id: current_user.id,event_id: @event.id)) %>
+	<%= form_with scope: :attendance, url: event_attendances_path, local: true do |form| %>
+		<div class="pt-2 mt-4">
+			<%= form.submit %>
+		</div>
+	<% end %>
+<% else %>
+	<h4> your attendance has been saved</h4>
+<% end %>

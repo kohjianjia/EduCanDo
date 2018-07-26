@@ -24,7 +24,8 @@ Rails.application.routes.draw do
   get 'faq' => "faq#index", as: "faq"
 
   resources :events, controller: "events" do
-    resources :attendances, only: [:index, :create]
+    resources :attendances, only: [:create, :new]
   end
+  resources :attendances, only: [:index]
 
 end

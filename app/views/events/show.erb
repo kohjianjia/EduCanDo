@@ -9,6 +9,7 @@
 </div>
 
 <%= link_to 'Back', events_path, :class => "btn btn-primary" %>
+
 <% if current_user != nil %>
 	<% if @event.user_id == current_user.id %>
 		<%= link_to 'Update', edit_event_path, :class => "btn btn-primary" %>
@@ -16,3 +17,5 @@
 	 	method: :delete, data: {confirm: 'Are you sure?'} %>
 	<% end %>
 <% end %>
+
+<%= link_to 'Click to attend', new_event_attendance_path(@event), :class => "btn btn-primary" %>

@@ -1,4 +1,4 @@
 class Attendance < ApplicationRecord
-	belonga_to :user
-	belonga_to :event
+	belongs_to :user
+	belongs_to :event
 end

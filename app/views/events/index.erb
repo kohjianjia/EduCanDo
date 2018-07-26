@@ -1,5 +1,8 @@
 <h1>All Events</h1>
 
+<%= link_to 'Create new event', new_event_path, :class => "btn btn-primary" %>
+
+<hr>
 <% @event.order(updated_at: :desc).each do |event| %>
 
 	<p><strong>Category: </strong><%= event.category %></p>
