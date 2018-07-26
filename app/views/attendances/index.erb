@@ -1,0 +1,10 @@
+<h1> Your attendances history </h1>
+
+<% @attendance.each do |attend| %>
+
+	<p><strong>Category: </strong><%= attend.event.category %></p>
+	<p><strong>Description: </strong><%= attend.event.description %></p>
+
+	<hr>
+
+<% end %>
