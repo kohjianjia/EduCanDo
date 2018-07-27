@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_25_101453) do
+ActiveRecord::Schema.define(version: 2018_07_27_060104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,10 +36,11 @@ ActiveRecord::Schema.define(version: 2018_07_25_101453) do
   create_table "ratings", force: :cascade do |t|
     t.string "comment"
     t.bigint "user_id"
-    t.bigint "attendance_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["attendance_id"], name: "index_ratings_on_attendance_id"
+    t.bigint "event_id"
+    t.integer "star"
+    t.index ["event_id"], name: "index_ratings_on_event_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
@@ -62,6 +63,6 @@ ActiveRecord::Schema.define(version: 2018_07_25_101453) do
   add_foreign_key "attendances", "events"
   add_foreign_key "attendances", "users"
   add_foreign_key "events", "users"
-  add_foreign_key "ratings", "attendances"
+  add_foreign_key "ratings", "events"
   add_foreign_key "ratings", "users"
 end

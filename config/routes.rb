@@ -26,6 +26,11 @@ Rails.application.routes.draw do
   resources :events, controller: "events" do
     resources :attendances, only: [:create, :new]
   end
+
   resources :attendances, only: [:index]
+
+  resources :events, controller: "events" do
+    resources :ratings, only: [:create, :new]
+  end
 
 end

@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :events
   has_many :attendances
+  has_many :ratings
 
   before_save :check_level
 
