@@ -1,34 +1,61 @@
-<h1>New event</h1>
-<%= form_with scope: :event, url: events_path, local: true do |form| %>
+<div class="container" style="margin-top: 2%;">
 
-<!-- 	<div class="mt-3">
-		<h3><%= form.label :category %>:</h3>
-		<%= form.text_field :category, :required => true %>
-	</div> -->
-	<div class="p-2 bd-highlight mt-2">
-	   <h3> <%= form.label :category %>:</h3>
-	   <%= form.radio_button :category, "class" %>
-	   Class/Lecture
-	   <%= form.radio_button :category, "presentation" %>
-	   Presentation
-	   <%= form.radio_button :category, "seminar" %>
-	   Seminar
-	   <%= form.radio_button :category, "sport" %>
-	   Sport
-	   <%= form.radio_button :category, "other" %>
-	   Other
-	</div>
+	<h1>New event</h1>
+	
+	<%= form_with scope: :event, url: events_path, local: true do |form| %>
 
-	<div class="mt-3">
-		<h3><%= form.label :description %>:</h3>
-		<%= form.text_area :description, :required => true %>
-	</div>
+		<div class="mt-3">
+			<h3><%= form.label :title %>:</h3>
+			<%= form.text_field :title, :required => true %>
+		</div>
+
+		<div class="p-2 bd-highlight mt-2">
+		   <h3> <%= form.label :category %>:</h3>
+		   <%= form.radio_button :category, "class" %>
+		   Class/Lecture
+		   <%= form.radio_button :category, "presentation" %>
+		   Presentation
+		   <%= form.radio_button :category, "seminar" %>
+		   Seminar
+		   <%= form.radio_button :category, "sport" %>
+		   Sport
+		   <%= form.radio_button :category, "other" %>
+		   Other
+		</div>
+
+		<div class="mt-3">
+			<h3><%= form.label :date %>:</h3>
+			<%= form.text_field :event_date, :required => true %>
+		</div>
+
+		<div class="mt-3">
+			<h3><%= form.label :start_time %>:</h3>
+			<%= form.text_field :start_time, type: "time",id: "appt-time", min: "8:00", max: "20:00", :required => true %>
+			<span class="hours">Earliest booking hour is 0800</span>
+		</div>
+
+		<div class="mt-3">
+			<h3><%= form.label :end_time %>:</h3>
+			<%= form.text_field :end_time, type: "time",id: "appt-time", min: "9:00", max: "22:00", :required => true %>
+			<span class="hours">All events must end before 22:00</span>
+		</div>
+
+		<div class="mt-3">
+			<h3><%= form.label :venue %>:</h3>
+			<%= form.text_field :venue, :required => true %>
+		</div>
+
+		<div class="mt-3">
+			<h3><%= form.label :description %>:</h3>
+			<%= form.text_area :description, :required => true %>
+		</div>
 
 
-	<div class="pt-2 mt-4">
-		<%= form.submit %>
-	</div>
-<% end %>	
+		<div class="pt-2 mt-4">
+			<%= form.submit :class => "btn btn-info"%>
+		</div>
+	<% end %>	
 
+</div>
 
 	

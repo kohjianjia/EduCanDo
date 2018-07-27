@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 2018_07_27_060104) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "venue"
+    t.date "event_date"
+    t.string "start_time"
+    t.string "end_time"
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

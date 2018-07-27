@@ -43,8 +43,16 @@ class EventsController < ApplicationController
 			end
 
 		end
-
 	end
+
+	def update_loc
+		@event = Event.find(params[:id])
+		if @event.update(current_location)
+			flash[:location_marked] = "Location marked!"
+			render json: true
+		end
+	end
+
 
 	def destroy
 		@event = Event.find(params[:id])
@@ -55,8 +63,14 @@ class EventsController < ApplicationController
 
 	private
 	def event_params
-		params.require(:event).permit(:category, :description)
+		params.require(:event).permit(:category, :description, :venue, :event_date, :start_time, :end_time, :title)
 
 	end	
+
+	def current_location
+		params.permit(:longitude, :latitude)
+	end
+
+
 
 end

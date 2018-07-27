@@ -1,21 +1,38 @@
-<h1>All Events</h1>
+<div class="container-fluid mb-4">
+	<div style="padding-left: 2%; padding-right: 3%">
 
-<%= link_to 'Create new event', new_event_path, :class => "btn btn-primary" %>
+		<h2 style="margin-top: 2%; margin-bottom: 2%">
+			All Events
+			<% if signed_in? %>
+				<%= link_to 'Create new event', new_event_path, :class => "btn btn-info ml-2" %>
+			<% end %>
+		</h2>
 
-<hr>
-<% @event.order(updated_at: :desc).each do |event| %>
+		<div class="row">
+			<% @event.order(updated_at: :desc).each do |event| %>
+				<div class="col-3">
+					<div class="card mb-4">
+						<div class="card-body">
+							<p><strong>Title: </strong><%= event.title %></p>
+							<p class="text-capitalize"><strong>Date: </strong><%= event.category %></p>
+							<p><strong>Date: </strong><%= event.event_date %></p>
+							<p><strong>Time: </strong><%= event.start_time %> to <%= event.end_time %></p>
 
-	<p><strong>Category: </strong><%= event.category %></p>
-	<p><strong>Description: </strong><%= event.description %></p>
+							<%= link_to 'More details', event_path(event), :class => "btn btn-info mb-1" %>
 
-	<%= link_to 'Read more', event_path(event), :class => "btn btn-primary" %>
-	<% if current_user != nil %>
-		<% if event.user_id == current_user.id %>
-			<%= link_to 'Update', edit_event_path(event), :class => "btn btn-primary" %>
-			<%= link_to 'Delete', event_path(event), :class => "btn btn-primary",
-		 method: :delete, data: {confirm: 'Are you sure?'} %>
-		<% end %>
-	<% end %>
-	<hr>
+							<% if current_user != nil %>
+								<% if event.user_id == current_user.id %>
+									<br />
+									<%= link_to 'Update', edit_event_path(event), :class => "btn btn-info mb-1" %> <br />
+									<%= link_to 'Delete', event_path(event), :class => "btn btn-info", method: :delete, data: {confirm: 'Are you sure?'} %>
+								<% end %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
 
-<% end %>
+	</div>
+</div>
+

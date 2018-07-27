@@ -12,7 +12,7 @@ class AttendancesController < ApplicationController
 		@attendance = Attendance.new
 		@attendance.user_id = current_user.id
 		@attendance.event_id = params[:event_id]
-		if current_user.role == "staff"
+		if current_user.role == "staff" && @event.category == "class"
 			flash[:danger] = "Come on!! You are a staff! why do you need attendance"
 			redirect_back fallback_location: @attendance
 		else
@@ -20,6 +20,7 @@ class AttendancesController < ApplicationController
 			user = User.find(current_user.id)
 			user.point = current_user.point + 10
 			user.save
+			flash[:success] = "You are going to this event!"
 			redirect_to @event
 		end
 

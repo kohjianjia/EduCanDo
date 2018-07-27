@@ -1,81 +1,275 @@
 
-<div class="col-md-4 mt-3">
-	<h3 class="text-capitalize">Category:</h3>
-	<p><%= @event.category %></p>
-</div>
+<div class="container" style="margin-top: 2%;">
 
-<div class="col-md-4 mt-3">
-	<h3 class="text-capitalize">Description:</h3>
-	<p><%= @event.description %></p>
-</div>
-<div>
-	<% if Rating.where(event_id: @event) %>
-		<% total_rate = Rating.where(event_id: @event).sum(:star) %>
-		<% average_rate = total_rate / Rating.where(event_id: @event, star: (1..5)).count(:user_id) %>
+	<div class="mt-3">
+		<h4>
+			<%= @event.title %> by <%= @event.user.first_name %> <%= @event.user.last_name %>
+			<% if @event.user_id == current_user.id %>
+				<% if @event.longitude == nil && @event.latitude == nil %>
+					<%= link_to 'Mark location', update_location_path(@event), :id => "mark_location", :class => "btn btn-warning ml-2" %>
+				<% end %>
+			<% end %>
+		</h4>
+	</div>
 
-		<% average_rate.times do |i| %>
-			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png"  width="30" height="30">
-		<% end %>
-	<% end %>
-</div>
+	<div class="mt-3">
+		<h5 class="text-capitalize">Category: <%= @event.category %></h5>
+	</div>
 
+	<div class="mt-3">
+		<h5 class="text-capitalize">Venue: <%= @event.venue %></h5>
+	</div>
 
-<%= link_to 'Back', events_path, :class => "btn btn-primary" %>
+	<div class="mt-3">
+		<h5>Time: <%= @event.start_time %> to <%= @event.end_time %></h5>
+	</div>
 
-<% if current_user != nil %>
-	<% if @event.user_id == current_user.id %>
-		<%= link_to 'Update', edit_event_path, :class => "btn btn-primary" %>
-		<%= link_to 'Delete', event_path(@event), :class => "btn btn-primary",
-	 	method: :delete, data: {confirm: 'Are you sure?'} %>
-	<% end %>
-<% end %>
+	<div>
+		<% if Rating.where(event_id: @event) %>
+			<% total_rate = Rating.where(event_id: @event).sum(:star) %>
+			<% if Rating.where(event_id: @event, star: (1..5)).count(:user_id) != 0 %>
+				<% average_rate = total_rate / Rating.where(event_id: @event, star: (1..5)).count(:user_id) %>
 
-<%= link_to 'Click to attend', new_event_attendance_path(@event), :class => "btn btn-primary" %>
-
-<% if (Attendance.find_by(user_id: current_user.id,event_id: @event.id)) %>
-	<%= form_with scope: :rating, url: event_ratings_path(@event), local: true do |form| %>
-
-		<div class="mt-3">
-			<h3><%= form.label :comment %>:</h3>
-			<%= form.text_area :comment %>
-		</div>
-		<% if !(Rating.find_by(user_id: current_user.id,event_id: @event.id, star: (1..5))) %>
-			<div class="stars">
-				    <input class="star star-5" id="star-5" type="radio" name="rating[star]" value="5" />
-				    <label class="star star-5" for="star-5"></label>
-				    <input class="star star-4" id="star-4" type="radio" name="rating[star]" value="4"/>
-				    <label class="star star-4" for="star-4"></label>
-				    <input class="star star-3" id="star-3" type="radio" name="rating[star]" value="3"/>
-				    <label class="star star-3" for="star-3"></label>
-				    <input class="star star-2" id="star-2" type="radio" name="rating[star]" value="2"/>
-				    <label class="star star-2" for="star-2"></label>
-				    <input class="star star-1" id="star-1" type="radio" name="rating[star]" value="1"/>
-				    <label class="star star-1" for="star-1"></label>
-			</div>
-		<% end %>
-		<div class="mt-3">
-			<%= form.submit %>
-		</div>
-	<% end %>
-
-
-
-<% end %>
-<h4 class="my-4">Reviews: </h4>
-<% @rating.order(updated_at: :desc).each do |rating| %>
-
-	<div style="border-style: ridge; ">
-		<% if rating.star != nil %>
-			<% num_of_stars = rating.star %>
-
-			<% num_of_stars.times do |i| %>
-				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png"  width="30" height="30">
+				<% average_rate.times do |i| %>
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png"  width="30" height="30">
+				<% end %>
 			<% end %>
 		<% end %>
-
-		<p><strong><%= rating.user.first_name %></strong>: <%= rating.comment %></p>
-		
 	</div>
 
 
+	<div class="mt-3">
+		<h5>Date: <%= @event.event_date %></h5>
+	</div>
+
+	<div class="mt-3">
+		<h5>Description:</h5>
+		<p><%= @event.description %></p>
+	</div>
+
+	<%= link_to 'All Events', events_path, :class => "btn btn-info" %>
+
+	<% if current_user != nil %>
+		<% if @event.user_id == current_user.id %>
+			<%= link_to 'Update', edit_event_path, :class => "btn btn-info" %>
+			<%= link_to 'Delete', event_path(@event), :class => "btn btn-danger", method: :delete, data: {confirm: 'Are you sure you want to delete this event?'} %>
+		<% end %>
+	<% end %>
+
+	<% if signed_in? %>
+		<% if @event.user_id != current_user.id %>
+			<%= link_to 'Click to Attend', new_event_attendance_path(@event), :id => "mark_attendance", :class => "btn btn-success" %>
+		<% end %>
+	<% else %>
+		<h5>To join an event, please sign in.</h5>
+	<% end %>
+
+	<% if (Attendance.find_by(user_id: current_user.id,event_id: @event.id)) %>
+		<%= form_with scope: :rating, url: event_ratings_path(@event), local: true do |form| %>
+
+			<div class="mt-3">
+				<h3><%= form.label :comment %>:</h3>
+				<%= form.text_area :comment %>
+			</div>
+			<% if !(Rating.find_by(user_id: current_user.id,event_id: @event.id, star: (1..5))) %>
+				<div class="stars">
+					    <input class="star star-5" id="star-5" type="radio" name="rating[star]" value="5" />
+					    <label class="star star-5" for="star-5"></label>
+					    <input class="star star-4" id="star-4" type="radio" name="rating[star]" value="4"/>
+					    <label class="star star-4" for="star-4"></label>
+					    <input class="star star-3" id="star-3" type="radio" name="rating[star]" value="3"/>
+					    <label class="star star-3" for="star-3"></label>
+					    <input class="star star-2" id="star-2" type="radio" name="rating[star]" value="2"/>
+					    <label class="star star-2" for="star-2"></label>
+					    <input class="star star-1" id="star-1" type="radio" name="rating[star]" value="1"/>
+					    <label class="star star-1" for="star-1"></label>
+				</div>
+			<% end %>
+			<div class="mt-3">
+				<%= form.submit %>
+			</div>
+
+		<% end %>
+
+	<% end %>
+
+	<h4 class="my-4">Reviews: </h4>
+	<% @rating.order(updated_at: :desc).each do |rating| %>
+
+		<div style="border-style: ridge; ">
+			<% if rating.star != nil %>
+				<% num_of_stars = rating.star %>
+
+				<% num_of_stars.times do |i| %>
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png"  width="30" height="30">
+				<% end %>
+			<% end %>
+
+			<p><strong><%= rating.user.first_name %></strong>: <%= rating.comment %></p>
+			
+		</div>
+
+	<% end %>
+
+</div>
+
+
+<% if @event.user_id == current_user.id %>
+
+    <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      $('#mark_location').hide();
+
+      var pos = ""
+      var map, infoWindow;
+
+      function initMap() {
+        //map = new google.maps.Map(document.getElementById('map'), {
+          //center: {lat: -34.397, lng: 150.644},
+         // zoom: 20
+        //});
+       // infoWindow = new google.maps.InfoWindow;
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            pos = {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+              authenticity_token: AUTH_TOKEN,
+            };
+
+	        $('#mark_location').show();
+            console.log(pos)
+			$('#mark_location').on('click', function(e){
+				e.preventDefault();
+				console.log(this)
+
+				$.ajax({
+					url: '/events/<%= @event.id %>/update_loc',
+					method: "POST",
+					data: pos,
+					dataType: 'json',
+					success: function(data){
+					  // refactor here (insert message instead of flash in events_controller)
+					  location.reload();
+					}
+				});
+			})
+
+            //longitude and latitude
+            // console.log(pos)
+      
+            // infoWindow.open(map);
+            // map.setCenter(pos);
+            // var marker = new google.maps.Marker({position: pos, map: map});
+
+            // Add circle overlay and bind to marker
+			// var circle = new google.maps.Circle({
+			//   map: map,
+			//   radius: 35,    // 10 miles in metres
+			//   fillColor: '#AA0000'
+			// });
+			// circle.bindTo('center', marker, 'position');
+
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['YOUR_API_KEY'] %>&callback=initMap">
+    </script>
+
+<% else %>
+
+<!-- add location for attendee -->
+
+
+    <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      $('#mark_attendance').hide();
+
+      var pos = ""
+      var map, infoWindow;
+
+      function initMap() {
+        //map = new google.maps.Map(document.getElementById('map'), {
+          //center: {lat: -34.397, lng: 150.644},
+         // zoom: 20
+        //});
+       // infoWindow = new google.maps.InfoWindow;
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            pos = {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+              authenticity_token: AUTH_TOKEN,
+            };
+
+            //longitude and latitude
+            console.log(pos)
+
+            $('#mark_attendance').show();
+      
+            // infoWindow.open(map);
+            // map.setCenter(pos);
+            // var marker = new google.maps.Marker({position: pos, map: map});
+
+            // Add circle overlay and bind to marker
+			// var circle = new google.maps.Circle({
+			//   map: map,
+			//   radius: 35,    // 10 miles in metres
+			//   fillColor: '#AA0000'
+			// });
+			// circle.bindTo('center', marker, 'position');
+
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['YOUR_API_KEY'] %>&callback=initMap">
+    </script>
+
+
 <% end %>
+
+
+
+
