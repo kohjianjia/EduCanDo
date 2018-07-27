@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   end
   resources :attendances, only: [:index]
 
+  post '/events/:id/update_loc' => 'events#update_loc', as: 'update_location'
 end
