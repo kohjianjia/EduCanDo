@@ -21,6 +21,9 @@ class EventsController < ApplicationController
 
 	def show
 		@event = Event.find(params[:id])
+		@rating = Rating.where(event_id: @event)
+		@attendance = current_user.attendances
+		@average = Rating.where(event_id: @event)	
 	end
 	
 	def edit

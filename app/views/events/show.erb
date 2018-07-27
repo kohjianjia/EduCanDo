@@ -1,3 +1,4 @@
+
 <div class="container" style="margin-top: 2%;">
 
 	<div class="mt-3">
@@ -22,6 +23,18 @@
 	<div class="mt-3">
 		<h5>Time: <%= @event.start_time %> to <%= @event.end_time %></h5>
 	</div>
+
+	<div>
+		<% if Rating.where(event_id: @event) %>
+			<% total_rate = Rating.where(event_id: @event).sum(:star) %>
+			<% average_rate = total_rate / Rating.where(event_id: @event, star: (1..5)).count(:user_id) %>
+
+			<% average_rate.times do |i| %>
+				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png"  width="30" height="30">
+			<% end %>
+		<% end %>
+	</div>
+
 
 	<div class="mt-3">
 		<h5>Date: <%= @event.event_date %></h5>
@@ -203,6 +216,57 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['YOUR_API_KEY'] %>&callback=initMap">
     </script>
+
+
+<% end %>
+
+
+<%= link_to 'Click to attend', new_event_attendance_path(@event), :class => "btn btn-primary" %>
+
+<% if (Attendance.find_by(user_id: current_user.id,event_id: @event.id)) %>
+	<%= form_with scope: :rating, url: event_ratings_path(@event), local: true do |form| %>
+
+		<div class="mt-3">
+			<h3><%= form.label :comment %>:</h3>
+			<%= form.text_area :comment %>
+		</div>
+		<% if !(Rating.find_by(user_id: current_user.id,event_id: @event.id, star: (1..5))) %>
+			<div class="stars">
+				    <input class="star star-5" id="star-5" type="radio" name="rating[star]" value="5" />
+				    <label class="star star-5" for="star-5"></label>
+				    <input class="star star-4" id="star-4" type="radio" name="rating[star]" value="4"/>
+				    <label class="star star-4" for="star-4"></label>
+				    <input class="star star-3" id="star-3" type="radio" name="rating[star]" value="3"/>
+				    <label class="star star-3" for="star-3"></label>
+				    <input class="star star-2" id="star-2" type="radio" name="rating[star]" value="2"/>
+				    <label class="star star-2" for="star-2"></label>
+				    <input class="star star-1" id="star-1" type="radio" name="rating[star]" value="1"/>
+				    <label class="star star-1" for="star-1"></label>
+			</div>
+		<% end %>
+		<div class="mt-3">
+			<%= form.submit %>
+		</div>
+	<% end %>
+
+
+
+<% end %>
+<h4 class="my-4">Reviews: </h4>
+<% @rating.order(updated_at: :desc).each do |rating| %>
+
+	<div style="border-style: ridge; ">
+		<% if rating.star != nil %>
+			<% num_of_stars = rating.star %>
+
+			<% num_of_stars.times do |i| %>
+				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png"  width="30" height="30">
+			<% end %>
+		<% end %>
+
+		<p><strong><%= rating.user.first_name %></strong>: <%= rating.comment %></p>
+		
+	</div>
 
 
 <% end %>

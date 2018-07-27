@@ -26,7 +26,13 @@ Rails.application.routes.draw do
   resources :events, controller: "events" do
     resources :attendances, only: [:create, :new]
   end
+
   resources :attendances, only: [:index]
 
   post '/events/:id/update_loc' => 'events#update_loc', as: 'update_location'
+
+  resources :events, controller: "events" do
+    resources :ratings, only: [:create, :new]
+  end
+
 end
