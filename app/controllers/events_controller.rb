@@ -60,7 +60,20 @@ class EventsController < ApplicationController
 		@event.destroy
 
 		redirect_to events_path
+	end
+
+	def education
+		@event = Event.where(category: ["class", "presentation", "seminar"] )
+
 	end	
+
+	def sport
+		@event = Event.where(category: "sport")
+	end
+
+	def other
+		@event = Event.where(category: "other")
+	end		
 
 	private
 	def event_params

@@ -19,6 +19,14 @@ Rails.application.routes.draw do
 
   get "/dashboard" => "dashboard#index", as: "dashboard"
 
+  get "/redeem" => "dashboard#redeem", as: "redeem"
+
+  get "events/education" => "events#education", as: "education"
+
+  get "events/sport" => "events#sport", as: "sport"
+
+  get "events/other" => "events#other", as: "other"
+
   
 
   get 'faq' => "faq#index", as: "faq"
