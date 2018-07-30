@@ -16,14 +16,18 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+  
   <%= javascript_tag "var AUTH_TOKEN = '#{form_authenticity_token}';" if protect_against_forgery? %>
-
-
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application' %>
 
 </head>
 <body>
+
+
+<% if request.path_info == '/' %>
+
+<% else %>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-info">
 
@@ -101,6 +105,10 @@
   </ul>
 </nav>
 
+
+<% end %>
+
+
     <!-- Flash messages -->
   <% flash.each do |key, value| %>
     <div class="container-fluid alert alert-info -<%= key %>">
@@ -110,6 +118,8 @@
     </div>
   <% end %>
   <!-- End of Flash messages -->
+
+  
   <%= yield %>
 
 
