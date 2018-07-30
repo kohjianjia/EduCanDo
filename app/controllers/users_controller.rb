@@ -15,6 +15,7 @@ class UsersController < Clearance::UsersController
 
 	def show
 		@user = User.find(params[:id])
+		@attended = Attendance.where(user_id: @user)
 	end
 
 	private

@@ -1,10 +1,18 @@
-<h1> Your attendances history </h1>
+<div class="container-fluid mb-5" style="background-color: #fff">
 
-<% @attendance.each do |attend| %>
+	<div class="container" style="margin-top: 2%;">
 
-	<p><strong>Category: </strong><%= attend.event.category %></p>
-	<p><strong>Description: </strong><%= attend.event.description %></p>
+		<h1> Your attendances history </h1>
 
-	<hr>
+		<% @attendance.each do |attend| %>
 
-<% end %>
+			<p><strong>Category: </strong><%= attend.event.category %></p>
+			<p><strong>Description: </strong><%= attend.event.title %></p>
+
+			<hr>
+
+		<% end %>
+
+	</div>
+
+</div>

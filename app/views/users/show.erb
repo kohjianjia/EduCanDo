@@ -1,30 +1,55 @@
+<div class="container-fluid mb-5" style="background-color: #fff">
 
+	<div class="container" style="margin-top: 2%;">
 
-<div class="container" style="margin-top: 2%;">
-	<div class="row">
-		<div class="col-md-8 text-justify">
-			<h5 class="text-capitalize"><strong>Full Name: </strong><%= @user.first_name + " " + @user.last_name %></h5>
-			<h5><strong>Email: </strong><%= @user.email %></h5>
-			<h5><strong>Role: </strong><%= @user.role %></h5>
-			<% if @user.role == "student" %>
-				<h5><strong>Total Points: <%= @user.point %></strong></h5>
-				<h5><strong>Level: <%= @user.level %></strong></h5>
-			<% else %>
-				<h5><strong>Rating: </strong></h5>
+		<div class="row">
+			<div class="col-md-8 text-justify">
+				<h5 class="text-capitalize"><strong>Full Name: </strong><%= @user.first_name + " " + @user.last_name %></h5>
+				<h5><strong>Email: </strong><%= @user.email %></h5>
+				<h5><strong>Role: </strong><%= @user.role %></h5>
+				<% if @user.role == "student" %>
+					<h5><strong>Total Points: <%= @user.point %></strong></h5>
+					<h5><strong>Level: <%= @user.level %></strong></h5>
+				<% else %>
+					<h5><strong>Rating: </strong></h5>
+				<% end %>
+			</div>
+		</div>
+
+		<hr />
+
+		<div>
+			<h5>
+				Events hosted by you: 
+				<a href="#" class="btn btn-info btn-sm ml-2">Your event list</a>
+			</h5>
+	    	<% i = 1 %>
+			<% @user.events.each do |event| %>
+	      		<a href="/events/<%= event.id %>" class="btn btn-outline btn-sm" role="button" aria-pressed="true">
+				  <%= i.to_s %>. <%= event.title %> 
+	      		</a>
+	      		<br />
+	      		<% i += 1 %>
 			<% end %>
 		</div>
-	</div>
 
-	<div>
-		<h5>Your events: </h5>
-    <% i = 1 %>
-		<% @user.events.each do |event| %>
-      <a href="/events/<%= event.id %>" class="btn btn-outline btn-sm" role="button" aria-pressed="true">
-			  <%= i.to_s %>. <%= event.title %> 
-      </a>
-      <br />
-      <% i += 1 %>
-		<% end %>
+		<hr />
+
+		<div>
+			<h5>
+				Attended events: 
+				<a href="/attendances" class="btn btn-info btn-sm ml-2">Your attendance list</a>
+			</h5>
+	    	<% i = 1 %>
+			<% @attended.each do |attend| %>
+	      		<a href="/events/<%= attend.event_id %>" class="btn btn-outline btn-sm" role="button" aria-pressed="true">
+				  <%= i.to_s %>. <%= attend.event.title %> 
+	      		</a>
+	      		<br />
+	      		<% i += 1 %>
+			<% end %>
+		</div>
+
 	</div>
 
 </div>

@@ -7,7 +7,7 @@ class EventsController < ApplicationController
 		@event = Event.new(event_params)
 		@event.user_id = current_user.id
 		if current_user.role == "student" && @event.category == "class"
-			flash[:danger] = "Students are not allowed to host classes"
+			flash[:danger] = "Students are not allowed to host classes."
 			redirect_back fallback_location: @event
 		else
 			@event.save
@@ -24,6 +24,7 @@ class EventsController < ApplicationController
 		@rating = Rating.where(event_id: @event)
 		@attendance = current_user.attendances
 		@average = Rating.where(event_id: @event)	
+		@attendees = Attendance.where(event_id: @event)
 	end
 	
 	def edit

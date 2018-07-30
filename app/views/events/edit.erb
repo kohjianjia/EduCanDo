@@ -1,39 +1,43 @@
-<div class="container" style="margin-top: 2%;">
+<div class="container-fluid mb-5" style="background-color: #fff">
 
-	<h2>Update event</h2>
+	<div class="container" style="margin-top: 2%;">
 
-	<h4 class="mt-3"><strong>Category: </strong><%= @event.category %></h4>
+		<h2>Update event</h2>
 
-	<%= form_with(model: @event, local: true) do |form| %>
-		<div class="mt-3">
-			<h4><%= form.label :date %>:</h4>
-			<%= form.text_field :event_date, :required => true %>
-		</div>
+		<h4 class="mt-3"><strong>Category: </strong><%= @event.category %></h4>
 
-		<div class="mt-3">
-			<h4><%= form.label :start_time %>:</h4>
-			<%= form.text_field :start_time, type: "time",id: "appt-time", min: "8:00", max: "20:00", :required => true %>
-		</div>
+		<%= form_with(model: @event, local: true) do |form| %>
+			<div class="mt-3">
+				<h4><%= form.label :date %>:</h4>
+				<%= form.text_field :event_date, :required => true %>
+			</div>
 
-		<div class="mt-3">
-			<h4><%= form.label :end_time %>:</h4>
-			<%= form.text_field :end_time, type: "time",id: "appt-time", min: "9:00", max: "21:00", :required => true %>
-		</div>
+			<div class="mt-3">
+				<h4><%= form.label :start_time %>:</h4>
+				<%= form.text_field :start_time, type: "time",id: "appt-time", min: "8:00", max: "20:00", :required => true %>
+			</div>
 
-		<div class="mt-3">
-			<h4><%= form.label :venue %>:</h4>
-			<%= form.text_field :venue, :required => true %>
-		</div>
+			<div class="mt-3">
+				<h4><%= form.label :end_time %>:</h4>
+				<%= form.text_field :end_time, type: "time",id: "appt-time", min: "9:00", max: "21:00", :required => true %>
+			</div>
 
-		<div class="mt-3">
-			<h4><%= form.label :description %>:</h4>
-			<%= form.text_area :description, :required => true %>
-		</div>
+			<div class="mt-3">
+				<h4><%= form.label :venue %>:</h4>
+				<%= form.text_field :venue, :required => true %>
+			</div>
 
-		<div class="pt-2 mt-4">
-			<%= form.submit :class => "btn btn-info" %>
-			<%= link_to 'Back', events_path, :class => "pl-2", :class => "btn btn-info" %>
-		</div>
-	<% end %>	
+			<div class="mt-3">
+				<h4><%= form.label :description %>:</h4>
+				<%= form.text_area :description, :required => true %>
+			</div>
+
+			<div class="pt-2 mt-4">
+				<%= form.submit :class => "btn btn-info" %>
+				<%= link_to 'Back', events_path, :class => "pl-2", :class => "btn btn-info" %>
+			</div>
+		<% end %>	
+
+	</div>
 
 </div>
