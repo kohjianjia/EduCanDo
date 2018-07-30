@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   include Clearance::User
 
-  has_many :events
-  has_many :attendances
-  has_many :ratings
+  has_many :events, dependent: :destroy
+  has_many :attendances, dependent: :destroy
+  has_many :ratings, dependent: :destroy
 
   before_save :check_level
 
