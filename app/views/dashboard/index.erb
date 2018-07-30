@@ -1,30 +1,34 @@
 <div class="container-fluid mb-5" style="background-color: #fff">
 	<div style="padding-left: 2%; padding-right: 3%">
 		<h2 style="margin-top: 2%; margin-bottom: 2%">Dashboard</h2>
+
+
+
+
 		<div class="row">
 
-			<div class="col-4">
-				<div class="card mb-5" style="width: 30vw;">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
+				<div class="card">
 				  <div class="card-body">
-				    <a href="#"><h5 class="card-title">Education Events</h5></a>
+				    <a href="/events/education"><h5 class="card-title">Education Events</h5></a>
 				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				  </div>
 				</div>
 			</div>
 
-			<div class="col-4">
-				<div class="card" style="width: 30vw;">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
+				<div class="card">
 				  <div class="card-body">
-				    <a href="#"><h5 class="card-title">Sport Events</h5></a>
+				    <a href="/events/sport"><h5 class="card-title">Sport Events</h5></a>
 				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				  </div>
 				</div>
 			</div>
 
-			<div class="col-4">
-				<div class="card" style="width: 30vw;">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
+				<div class="card">
 				  <div class="card-body">
-				    <a href="#"><h5 class="card-title">Other Events</h5></a>
+				    <a href="/events/other"><h5 class="card-title">Other Events</h5></a>
 				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				  </div>
 				</div>
@@ -34,13 +38,13 @@
 
 		<div class="row">
 
-			<div class="col-3">
-				<div class="card" style="width: 22vw;">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+				<div class="card">
 				  <div class="card-body">
 				    <h5 class="card-title">Upcoming Events</h5>
 				    <h6 class="card-text">
 				    	<% i = 1 %>
-				    	<% @event.order("created_at DESC").each do |event| %>
+				    	<% @event.order("created_at DESC" ).limit(10).each do |event| %>
 				    		<a href="/events/<%= event.id %>" class="btn btn-outline btn-sm" role="button" aria-pressed="true">
 				    			<%= i.to_s %>. <%= event.title %> 
 				    		</a>
@@ -55,19 +59,19 @@
 				</div>
 			</div>
 
-			<div class="col-3">
-				<div class="card" style="width: 22vw;">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+				<div class="card">
 				  <div class="card-body">
 				    <h5 class="card-title">Redeemable Points</h5>
 				    <h5><strong><%= current_user.point %></strong></h5>
 				    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-				    <a href="#" class="btn btn-info animated infinite tada delay-2s mt-2" style="margin-left: 2%">Redeem now!</a>
+				    <a href="/redeem" class="btn btn-info animated infinite tada delay-2s mt-2" style="margin-left: 2%">Redeem now!</a>
 				  </div>
 				</div>
 			</div>
 
-			<div class="col-3">
-				<div class="card" style="width: 22vw;">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+				<div class="card">
 				  <div class="card-body">
 				    <a href="#"><h5 class="card-title">Staff Review</h5></a>
 				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -75,24 +79,19 @@
 				</div>
 			</div>
 
-			<div class="col-3">
-				<div class="card" style="width: 22vw;">
+			<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+				<div class="card">
 				  <div class="card-body">
 				    <h5 class="card-title">Top 10</h5>
-				    <p class="card-text">
-				    	<ul>
-				    		<li>Some</li>
-				    		<li>quick</li>
-				    		<li>example</li>
-				    		<li>text</li>
-				    		<li>to</li>
-				    		<li>build</li>
-				    		<li>on</li>
-				    		<li>the</li>
-				    		<li>card</li>
-				    		<li>title</li>
-				    	</ul>
-					</p>
+				    <h6 class="card-text">
+				    	<% i = 1 %>
+				    	<% @user.order("point DESC" ).limit(10).each do |user| %>
+				    		<a href="/users/<%= user.id %>" class="btn btn-outline btn-sm" role="button" aria-pressed="true">
+				    			<%= i.to_s %>. <%= user.first_name %> <%= user.last_name %> |  <%= user.point%> points
+				    		</a>
+				    		<br />
+				    		<% i += 1 %>
+				    	<% end %>
 				    <a href="#" class="btn btn-info btn-sm">Rank List</a>
 				  </div>
 				</div>
