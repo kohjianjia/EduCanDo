@@ -20,7 +20,7 @@ class AttendancesController < ApplicationController
 			user = User.find(current_user.id)
 			user.point = current_user.point + 10
 			user.save
-			flash[:success] = "Your attendance has been marked, and you've earned 10 points!"
+			flash[:success] = "You've earned 10 points!"
 			redirect_to @event
 		end
 
