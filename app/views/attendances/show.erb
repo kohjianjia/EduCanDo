@@ -1,0 +1,40 @@
+<style type="text/css">
+	#egg {
+	    position: absolute;
+	    top: 24vh;
+	    left: 35vw;
+	    transition: all .2s linear 0;
+	    -webkit-transition: .2s;
+	    -webkit-transition-timing-function: linear;
+	    -webkit-animation: anime_egg_move 3s infinite;
+	    -webkit-animation-timing-function: linear;
+	    -webkit-animation-direction: alternate;
+	}
+
+	@-webkit-keyframes anime_egg_move {
+	    from {}
+	    to {
+	        -webkit-transform: rotate(360deg);
+	        margin-left: 30vw;
+	    }
+	}
+</style>
+
+<div class="container-fluid mb-5" style="background-color: #fff">
+
+	<div class="container" style="margin-top: 2%;">
+		<h4>Your attendance has been saved.</h4>
+		<%= link_to 'Back to Event', event_path(@event), :class => "btn btn-info btn-sm mt-2" %>
+		<% if @attendance.egg == false %>
+			<!-- egg here -->
+			<%= form_with scope: :attendance, url: event_attendance_egg_path(@event), local: true do |form| %>
+				<%= form.hidden_field :egg, :value => "true" %>
+				<div class="pt-2 mt-4">
+					<%= image_submit_tag("https://vignette.wikia.nocookie.net/mysingingmonsters/images/f/fc/Pokemon_egg.png/revision/latest?cb=20160817131107", id: "egg")%>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
+
