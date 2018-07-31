@@ -32,8 +32,10 @@ Rails.application.routes.draw do
   get 'faq' => "faq#index", as: "faq"
 
   resources :events, controller: "events" do
-    resources :attendances, only: [:create, :new]
+    resources :attendances, only: [:create, :new, :show]
   end
+
+  post '/events/:event_id/attendances/egg' => "attendances#create_egg", as: "event_attendance_egg"
 
   resources :attendances, only: [:index]
 
