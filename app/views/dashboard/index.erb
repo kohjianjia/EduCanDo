@@ -1,4 +1,4 @@
-<div class="container-fluid mb-5" style="background-color: #fff">
+<div class="container-fluid">
 	<div style="padding-left: 2%; padding-right: 3%">
 		<h2 style="margin-top: 2%; margin-bottom: 2%">Dashboard</h2>
 
@@ -83,7 +83,7 @@
 				<div class="card">
 				  <div class="card-body">
 				    <h5 class="card-title">Top 10</h5>
-				    <h6 class="card-text">
+				    <div class="card-text">
 				    	<% i = 1 %>
 				    	<% @user.order("point DESC" ).limit(10).each do |user| %>
 				    		<a href="/users/<%= user.id %>" class="btn btn-outline btn-sm" role="button" aria-pressed="true">
