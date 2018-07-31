@@ -20,9 +20,31 @@ class AttendancesController < ApplicationController
 			user = User.find(current_user.id)
 			user.point = current_user.point + 10
 			user.save
-			flash[:success] = "You've earned 10 points!"
-			redirect_to @event
+			flash[:success] = "You've sucessfully saved attendance, and you've earned 10 points!"
+			redirect_to event_attendance_path(@event, @attendance)
 		end
 
+	end
+
+	def create_egg
+		@event = Event.find(params[:event_id])
+		@attendance = Attendance.find_by(user_id:current_user.id, event_id:@event.id)
+		if @attendance.egg == false
+			user = User.find(current_user.id)
+			@random = rand(0..20)
+			user.point = current_user.point + @random
+
+			user.save
+			
+			@attendance.update(egg: true)
+			
+		  	flash[:extra] = "You've earned #{@random} points!"
+		  	redirect_to @event
+		end
+	end
+
+	def show
+		@event = Event.find(params[:event_id])
+		@attendance = Attendance.find(params[:id])
 	end
 end

@@ -85,6 +85,4 @@ class EventsController < ApplicationController
 		params.permit(:longitude, :latitude)
 	end
 
-
-
 end
