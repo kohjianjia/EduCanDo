@@ -1,43 +1,55 @@
-<div class="container-fluid mb-5" style="background-color: #fff">
+<body style="background-image: url(http://cpml.com.au/wp-content/uploads/2016/04/CPML-background21.jpg);">
+	<div class="container-fluid mb-5">
+		<div class="container" style="margin-top: 2%;">
+			<div class="row" >
+				<div class="col-sm-6" style="margin: auto; background-color : #FFFFFF99; padding: 4%" >
 
-	<div class="container" style="margin-top: 2%;">
+					<h3><strong>Update event</strong></h3>
 
-		<h2>Update event</h2>
+					<h5 class="mt-4">Category: <strong><%= @event.category %></strong></h5>
 
-		<h4 class="mt-3"><strong>Category: </strong><%= @event.category %></h4>
+					<%= form_with(model: @event, local: true) do |form| %>
 
-		<%= form_with(model: @event, local: true) do |form| %>
-			<div class="mt-3">
-				<h4><%= form.label :date %>:</h4>
-				<%= form.text_field :event_date, :required => true %>
+						<div class="mt-3">
+							<h5><%= form.label :title %>:</h5>
+							<%= form.text_field :title, :required => true %>
+						</div>
+
+						<div class="mt-3">
+							<h5><%= form.label :date %>:</h5>
+							<%= form.text_field :event_date, :required => true %>
+						</div>
+
+						<div class="mt-3">
+							<h5><%= form.label :start_time %>:</h5>
+							<%= form.text_field :start_time, type: "time",id: "appt-time", min: "8:00", max: "20:00", :required => true %>
+							<span class="hours">Earliest booking hour is 0800</span>
+						</div>
+
+						<div class="mt-3">
+							<h5><%= form.label :end_time %>:</h5>
+							<%= form.text_field :end_time, type: "time",id: "appt-time", min: "9:00", max: "21:00", :required => true %>
+							<span class="hours">All events must end before 22:00</span>
+						</div>
+
+						<div class="mt-3">
+							<h5><%= form.label :venue %>:</h5>
+							<%= form.text_field :venue, :required => true %>
+						</div>
+
+						<div class="mt-3">
+							<h5><%= form.label :description %>:</h5>
+							<%= form.text_area :description, :required => true %>
+						</div>
+
+						<div class="pt-2 mt-4">
+							<%= form.submit :class => "btn btn-info" %>
+							<%= link_to 'Back', events_path, :class => "pl-2", :class => "btn btn-info" %>
+						</div>
+					<% end %>	
+
+				</div>
 			</div>
-
-			<div class="mt-3">
-				<h4><%= form.label :start_time %>:</h4>
-				<%= form.text_field :start_time, type: "time",id: "appt-time", min: "8:00", max: "20:00", :required => true %>
-			</div>
-
-			<div class="mt-3">
-				<h4><%= form.label :end_time %>:</h4>
-				<%= form.text_field :end_time, type: "time",id: "appt-time", min: "9:00", max: "21:00", :required => true %>
-			</div>
-
-			<div class="mt-3">
-				<h4><%= form.label :venue %>:</h4>
-				<%= form.text_field :venue, :required => true %>
-			</div>
-
-			<div class="mt-3">
-				<h4><%= form.label :description %>:</h4>
-				<%= form.text_area :description, :required => true %>
-			</div>
-
-			<div class="pt-2 mt-4">
-				<%= form.submit :class => "btn btn-info" %>
-				<%= link_to 'Back', events_path, :class => "pl-2", :class => "btn btn-info" %>
-			</div>
-		<% end %>	
-
+		</div>
 	</div>
-
-</div>
+</body>

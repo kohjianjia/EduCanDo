@@ -13,6 +13,7 @@ class RatingsController < ApplicationController
 			user = User.find(current_user.id)
 			user.point = current_user.point + 10
 			user.save
+			flash[:success] = "Thank you for rating. You've earned 10 points!"
 			redirect_to @event
 		elsif @rating.save
 			redirect_to @event
