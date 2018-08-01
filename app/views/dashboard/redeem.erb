@@ -82,7 +82,7 @@
                 <div class="card-footer">
                 <%= form_with scope: :user, url: redeem_points_path(name:100), local: true do |form| %>
                   <div class="submit-field my-2">
-                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite shake delay-5s mt-2" %>
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite flash delay-5s mt-2" %>
                   </div>
                 <% end %>
                 </div>
@@ -142,7 +142,7 @@
                 <div class="card-footer">
                 <%= form_with scope: :user, url: redeem_points_path(name:500), local: true do |form| %>
                   <div class="submit-field my-2">
-                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite flash delay-4s mt-2" %>
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite shake delay-5s mt-2" %>
                   </div>
                 <% end %>
                 </div>
