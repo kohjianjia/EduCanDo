@@ -61,8 +61,8 @@
 <div class="container-fluid my-5"><br>
 	<div class="row">
 	  <div class="col-sm-6" style="margin: auto;">
-	    <div class="card">
-	      <h4 class="card-header text-right bg-info text-white"><%= @user.first_name %> <%= @user.last_name %>
+	    <div class="card" style="border-radius: 15px">
+	      <h4 class="card-header text-right text-white" style="background-color: #64a19d;"><%= @user.first_name %> <%= @user.last_name %>
 	      <div class="float-left small">
 					<% if @user.role == "student" %>
 						<h6>Total Points: <%= @user.point %></h6>
@@ -82,28 +82,29 @@
 						</h5>
 			    	<% i = 1 %>
 						<% @user.events.limit(3).each do |event| %>
-			      		<a href="/events/<%= event.id %>" class="btn btn-outline btn-sm" role="button" aria-pressed="true">
+			      		<a href="/events/<%= event.id %>" class="btn btn-outline btn-sm text-dark" role="button" aria-pressed="true">
 						  <%= i.to_s %>. <%= event.title %> 
 			      		</a>
 			      		<br/>
 			      		<% i += 1 %>
 							<% end %>
-							<a href="#" class="btn btn-info btn-sm ml-2">Your event list</a>
+							<a href="#" class="btn btn-outline-secondary mt-2 btn-sm ml-2">Your event list</a>
 						</div>
-<!-- 							<div class="card-text">
+						<hr>
+							<div class="card-text">
 								<h5>
 								Attended events: 
 								</h5>
 					    	<% i = 1 %>
 								<% @attended.limit(3).each do |attend| %>
-					      		<a href="/events/<%= attend.event_id %>" class="btn btn-outline btn-sm" role="button" aria-pressed="true">
+					      		<a href="/events/<%= attend.event_id %>" class="btn btn-outline btn-sm text-dark" role="button" aria-pressed="true">
 								  <%= i.to_s %>. <%= attend.event.title %> 
 					      		</a>
 					      		<br />
 					      		<% i += 1 %>
 								<% end %>
-								<a href="/attendances" class="btn btn-info btn-sm ml-2">Your attendance list</a>
-							</div> -->
+								<a href="/attendances" class="btn btn-outline-secondary btn-sm ml-2">Your attendance list</a>
+							</div>
 	    		</div>
 	  	</div>
 		</div>
