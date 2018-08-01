@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get "/dashboard" => "dashboard#index", as: "dashboard"
 
   get "/redeem" => "dashboard#redeem", as: "redeem"
+  post "/redeem_points" => "dashboard#redeem_points", as: "redeem_points"
 
   get "events/education" => "events#education", as: "education"
 

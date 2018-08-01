@@ -1,52 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Shop Homepage - Start Bootstrap Template</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/shop-homepage.css" rel="stylesheet">
-
-  </head>
-
-  <body style="background-image: url();">
-
-    <!-- Navigation -->
-<!--     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">Rewards</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav> -->
+<body style="background-image: url(http://cpml.com.au/wp-content/uploads/2016/04/CPML-background21.jpg);">
 
     <!-- Page Content -->
     <div class="container">
@@ -55,12 +7,12 @@
 
         <div class="col-lg-3">
 
-          <h1 class="my-4 animated infinite pulse delay-5s mt-2">REWARDS</h1>
-          <div class="list-group animated infinite pulse delay-5s mt-2">
-            <p class="list-group-item">Name : <%= current_user.first_name %> <%= current_user.last_name %></p>
-            <p class="list-group-item">Role : <%= current_user.role %></p>
-            <p class="list-group-item">Total points : <%= current_user.point %></p>
-            <p class="list-group-item">Level : <%= current_user.level %></p>
+          <div class="list-group animated infinite pulse delay-5s mt-2" style="position: fixed; font-family: courier new;">
+            <h1 class="my-4 animated infinite bounce delay-5s mt-2" style="font-family: impact; font-size: 60px">REWARDS</h1>
+            <p class="list-group-item" style="background-color: #FFFFFF99;">Name : <%= current_user.first_name %> <%= current_user.last_name %></p>
+            <p class="list-group-item" style="background-color: #FFFFFF99;">Role : <%= current_user.role %></p>
+            <p class="list-group-item" style="background-color: #FFFFFF99;">Total points : <%= current_user.point %></p>
+            <p class="list-group-item" style="background-color: #FFFFFF99;">Level : <%= current_user.level %></p>
           </div>
 
         </div>
@@ -98,97 +50,121 @@
           <div class="row">
 
             <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="https://cdn.grab.com/my/wp-content/uploads/sites/8/2016/08/grabrewards_my_tile_dominos-1.jpg" alt=""></a>
-                <div class="card-body">
-                  <h4 class="card-title">
-                    <a href="#">Dominos</a>
-                  </h4>
-                  <h5>200 points</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                </div>
-                <div class="card-footer">
-                  <a href="/redeem" class="btn btn-info animated infinite bounce delay-5s mt-2" style="margin-left: 2%">Redeem now!</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
+              <div class="card h-100" style="background-color: #FFFFFF99;>
                 <a href="#"><img class="card-img-top" src="https://cdn.grab.com/my/wp-content/uploads/sites/8/2016/08/grabrewards_my_tile_juiceworks-02_member.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Juice works</a>
+                    <p>Juice Works</p>
                   </h4>
                   <h5>50 points</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                  <p class="card-text">Juice Works' fruit juices are handcrafted with the freshest natural ingredients. Take your pick from a selection of refreshing, healthy beverages which are perfect for a hot day.</p>
                 </div>
                 <div class="card-footer">
-                  <a href="/redeem" class="btn btn-info animated infinite bounce delay-5s mt-2" style="margin-left: 2%">Redeem now!</a>
+                <%= form_with scope: :user, url: redeem_points_path(name:50), local: true do |form| %>
+                  <div class="submit-field my-2">
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite shake delay-5s mt-2", :name =>"50" %>
+                  </div>
+                <% end %>
                 </div>
               </div>
             </div>
 
             <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
+              <div class="card h-100" style="background-color: #FFFFFF99;>
                 <a href="#"><img class="card-img-top" src="https://cdn.grab.com/my/wp-content/uploads/sites/8/2016/08/grabrewards_my_tile_juiceworks-02_silver.jpg" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Juice works</a>
+                    <p>Juice Works</p>
                   </h4>
                   <h5>100 points</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                  <p class="card-text">Juice Works’ fruit juices are handcrafted with the freshest natural ingredients. Take your pick from a selection of refreshing, healthy beverages which are perfect for a hot day.</p>
                 </div>
                 <div class="card-footer">
-                  <a href="/redeem" class="btn btn-info animated infinite bounce delay-5s mt-2" style="margin-left: 2%">Redeem now!</a>
+                <%= form_with scope: :user, url: redeem_points_path(name:100), local: true do |form| %>
+                  <div class="submit-field my-2">
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite shake delay-5s mt-2" %>
+                  </div>
+                <% end %>
                 </div>
               </div>
             </div>
 
             <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
+              <div class="card h-100" style="background-color: #FFFFFF99;>
+                <a href="#"><img class="card-img-top" src="https://cdn.grab.com/my/wp-content/uploads/sites/8/2016/08/grabrewards_my_tile_dominos-1.jpg" alt=""></a>
+                 <div class="card-body">
+                  <h4 class="card-title">
+                    <p>Dominos</p>
+                  </h4>
+                  <h5>200 points</h5>
+                  <p class="card-text">Domino’s serves freshly-made, delicious pizzas that’ll be delivered to your doorstep. Perfect for takeaways too. A meal best shared with family and friends.</p>
+                 </div>
+                <div class="card-footer">
+                <%= form_with scope: :user, url: redeem_points_path(name:200), local: true do |form| %>
+                  <div class="submit-field my-2">
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite shake delay-5s mt-2" %>
+                  </div>
+                <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100" style="background-color: #FFFFFF99;">
                 <a href="#"><img class="card-img-top" src="http://cdn7.bigcommerce.com/s-d32d6hqzrd/images/stencil/1280x1280/products/126/378/mystery-boxes-magicalunicorn_23987__88474.1517001732.jpg?c=2&imbypass=on" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Mystery Box(S)</a>
+                    <p>Mystery Box(S)</p>
                   </h4>
                   <h5>300 points</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                  <p class="card-text">Mystery Box is a box filled with random assortment of gifts for yourself. Everything from extra points, school merchandise, vouchers and many more! (S) comes with x1 item</p>
                 </div>
                 <div class="card-footer">
-                  <a href="/redeem" class="btn btn-info animated infinite flash delay-5s mt-2" style="margin-left: 2%">Redeem now!</a>
+                <%= form_with scope: :user, url: redeem_points_path(name:300), local: true do |form| %>
+                  <div class="submit-field my-2">
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite flash delay-5s mt-2" %>
+                  </div>
+                <% end %>
                 </div>
               </div>
             </div>
 
             <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
+              <div class="card h-100" style="background-color: #FFFFFF99;">
                 <a href="#"><img class="card-img-top" src="http://cdn7.bigcommerce.com/s-d32d6hqzrd/images/stencil/1280x1280/products/126/378/mystery-boxes-magicalunicorn_23987__88474.1517001732.jpg?c=2&imbypass=on" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Mystery Box(M)</a>
+                    <p>Mystery Box(M)</p>
                   </h4>
                   <h5>500 points</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                  <p class="card-text">Mystery Box is a box filled with random assortment of gifts for yourself. Everything from extra points, school merchandise, vouchers and many more! (M) comes with x3 items</p>
                 </div>
                 <div class="card-footer">
-                  <a href="/redeem" class="btn btn-info animated infinite flash delay-5s mt-2" style="margin-left: 2%">Redeem now!</a>
+                <%= form_with scope: :user, url: redeem_points_path(name:500), local: true do |form| %>
+                  <div class="submit-field my-2">
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite flash delay-4s mt-2" %>
+                  </div>
+                <% end %>
                 </div>
               </div>
             </div>
 
             <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
+              <div class="card h-100" style="background-color: #FFFFFF99;">
                 <a href="#"><img class="card-img-top" src="http://cdn7.bigcommerce.com/s-d32d6hqzrd/images/stencil/1280x1280/products/126/378/mystery-boxes-magicalunicorn_23987__88474.1517001732.jpg?c=2&imbypass=on" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">Mystery Box(L)</a>
+                    <p>Mystery Box(L)</p>
                   </h4>
                   <h5>1000 points</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                  <p class="card-text">Mystery Box is a box filled with random assortment of gifts for yourself. Everything from extra points, school merchandise, vouchers and many more! (L) comes with x4 items</p>
                 </div>
                 <div class="card-footer">
-                  <a href="/redeem" class="btn btn-info animated infinite flash delay-5s mt-2" style="margin-left: 2%">Redeem now!</a>
+                <%= form_with scope: :user, url: redeem_points_path(name:1000), local: true do |form| %>
+                  <div class="submit-field my-2">
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite flash delay-3s mt-2" %>
+                  </div>
+                <% end %>
                 </div>
               </div>
             </div>
@@ -206,7 +182,7 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5" style="background-color: #64a19d;">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; EduCanDo 2018</p>
       </div>
@@ -217,6 +193,4 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  </body>
-
-</html>
+</body>
