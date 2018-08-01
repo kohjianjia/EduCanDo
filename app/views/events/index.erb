@@ -11,17 +11,19 @@
 
 			<div class="row">
 				<% @event.order(event_date: :desc, start_time: :desc).each do |event| %>
-						<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-							<div class="card">
+						<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" >
+							<div class="card" style="background-color : #FFFFFF99;">
 								<div class="card-body">
 									<p><strong>Title: </strong><%= event.title %></p>
 									<p class="text-capitalize"><strong>Category: </strong><%= event.category %></p>
 									<p><strong>Date: </strong><%= event.event_date %></p>
 									<p><strong>Time: </strong><%= event.start_time %> to <%= event.end_time %></p>
-									<% if event.user_id == current_user.id %>
-										<%= link_to 'More details', event_path(event), :class => "btn btn-info mb-1" %>
-							 		<% else %>
-										<%= link_to 'More details', event_path(event), :class => "btn btn-secondary mb-1" %>
+									<% if current_user != nil %>
+										<% if event.user_id == current_user.id %>
+											<%= link_to 'More details', event_path(event), :class => "btn btn-info mb-1" %>
+								 		<% else %>
+											<%= link_to 'More details', event_path(event), :class => "btn btn-secondary mb-1" %>
+										<% end %>
 									<% end %>
 								</div>
 							</div>
