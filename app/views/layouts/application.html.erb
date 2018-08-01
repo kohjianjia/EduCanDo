@@ -2,6 +2,9 @@
 <html>
 <head>
   <%= csrf_meta_tag %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
   <link rel="stylesheet"
@@ -29,7 +32,7 @@
 
 <% else %>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #64a19d">
 
   <% if signed_in? %>
     <a class="navbar-brand" href="/dashboard" style="font-family: Courier New">EduCanDo</a>
@@ -88,21 +91,15 @@
         </li> -->
         <% if signed_in? -%>
           <li class="nav-item">
+            <li class="nav-item">
+              <a class="nav-link" href="/faq">FAQ</a>
+            </li> 
             <%= link_to t(".sign_out"), sign_out_path, method: :delete,    :class => "nav-link" %>
           </li>
         </ul>
       <% end %>
     </form>
   </div>
-</nav>
-
-
-<nav class="navbar navbar-light bg-light" style="overflow: hidden; position: fixed; bottom: 0; width: 100%; z-index: -1;">
-  <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/faq">FAQ</a>
-      </li>
-  </ul>
 </nav>
 
 

@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<div class="container-fluid" style="background-image: url(http://cpml.com.au/wp-content/uploads/2016/04/CPML-background21.jpg);">
 	<div style="padding-left: 2%; padding-right: 3%">
-		<h2 style="margin-top: 2%; margin-bottom: 2%">Dashboard</h2>
+		<h2 style="margin-bottom: 2%">Dashboard</h2>
 
 
 
@@ -10,7 +10,7 @@
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
 				<div class="card">
 				  <div class="card-body">
-				    <a href="/events/education"><h5 class="card-title">Education Events</h5></a>
+				    <a href="/events/education"><h5 class="card-title text-dark">Education Events</h5></a>
 				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				  </div>
 				</div>
@@ -19,7 +19,7 @@
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
 				<div class="card">
 				  <div class="card-body">
-				    <a href="/events/sport"><h5 class="card-title">Sport Events</h5></a>
+				    <a href="/events/sport"><h5 class="card-title text-dark">Sport Events</h5></a>
 				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				  </div>
 				</div>
@@ -28,7 +28,7 @@
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
 				<div class="card">
 				  <div class="card-body">
-				    <a href="/events/other"><h5 class="card-title">Other Events</h5></a>
+				    <a href="/events/other"><h5 class="card-title text-dark">Other Events</h5></a>
 				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				  </div>
 				</div>
@@ -45,7 +45,7 @@
 				    <h6 class="card-text">
 				    	<% i = 1 %>
 				    	<% @event.order("created_at DESC" ).limit(10).each do |event| %>
-				    		<a href="/events/<%= event.id %>" class="btn btn-outline btn-sm" role="button" aria-pressed="true">
+				    		<a href="/events/<%= event.id %>" class="btn btn-outline btn-sm text-dark" role="button" aria-pressed="true">
 				    			<%= i.to_s %>. <%= event.title %> 
 				    		</a>
 				    		<br />
@@ -73,7 +73,7 @@
 			<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
 				<div class="card">
 				  <div class="card-body">
-				    <a href="#"><h5 class="card-title">Staff Review</h5></a>
+				    <a href="#"><h5 class="card-title text-dark">Staff Review</h5></a>
 				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				  </div>
 				</div>
@@ -86,7 +86,7 @@
 				    <div class="card-text">
 				    	<% i = 1 %>
 				    	<% @user.order("point DESC" ).limit(10).each do |user| %>
-				    		<a href="/users/<%= user.id %>" class="btn btn-outline btn-sm" role="button" aria-pressed="true">
+				    		<a href="/users/<%= user.id %>" class="btn btn-outline btn-sm text-dark" role="button" aria-pressed="true">
 				    			<%= i.to_s %>. <%= user.first_name %> <%= user.last_name %> |  <%= user.point%> points
 				    		</a>
 				    		<br />
