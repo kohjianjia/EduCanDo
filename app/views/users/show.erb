@@ -61,7 +61,7 @@
 <div class="container-fluid my-5"><br>
 	<div class="row">
 	  <div class="col-sm-6" style="margin: auto;">
-	    <div class="card" style="border-radius: 15px">
+	    <div class="card" style=" background-color: #FFFFFF99; border-radius: 15px">
 	      <h4 class="card-header text-right text-white" style="background-color: #64a19d;"><%= @user.first_name %> <%= @user.last_name %>
 	      <div class="float-left small">
 					<% if @user.role == "student" %>
@@ -72,7 +72,7 @@
 					<% end %>
 	      </div>
 	      </h4>
-	      <div class="card-body text-center" style="background-color: azure; border-radius: 10px">
+	      <div class="card-body text-center" style="border-radius: 10px">
 	        <h6 class="card-title"><strong>Email: </strong><%= @user.email %></h6>
 					<h6 class="card-title"><strong>Role: </strong><%= @user.role %></h6>
 					<hr>
@@ -88,7 +88,7 @@
 			      		<br/>
 			      		<% i += 1 %>
 							<% end %>
-							<a href="#" class="btn btn-outline-secondary mt-2 btn-sm ml-2">Your event list</a>
+							<a href="/events/history" class="btn btn-outline-secondary mt-2 btn-sm ml-2">Your event list</a>
 						</div>
 						<hr>
 							<div class="card-text">

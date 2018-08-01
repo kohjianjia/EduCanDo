@@ -73,7 +73,12 @@ class EventsController < ApplicationController
 
 	def other
 		@event = Event.where(category: "other")
-	end		
+	end	
+
+
+	def history
+		@event = Event.where(user_id:current_user.id)
+	end	
 
 	private
 	def event_params

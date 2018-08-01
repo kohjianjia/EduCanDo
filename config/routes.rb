@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   get "events/other" => "events#other", as: "other"
 
+  get "events/history" => "events#history", as: "history"
   
 
   get 'faq' => "faq#index", as: "faq"
