@@ -5,14 +5,14 @@
 
 			<h1> Your attendances history </h1>
 			<div class="row">
-				<% @attendance.each do |attend| %>
+				<% @event.each do |event| %>
 					<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
 							<div class="card" style="background-color: #FFFFFF99">
 								<div class="card-body">
-									<p><strong>Title: </strong><%= attend.event.title %></p>
-									<p class="text-capitalize"><strong>Category: </strong><%= attend.event.category %></p>
-									<p><strong>Date: </strong><%= attend.event.event_date %></p>
-										<%= link_to 'More details', event_path(attend.event), :class => "btn btn-secondary mb-1" %>
+									<p><strong>Title: </strong><%= event.title %></p>
+									<p class="text-capitalize"><strong>Category: </strong><%= event.category %></p>
+									<p><strong>Date: </strong><%= event.event_date %></p>
+										<%= link_to 'More details', event_path(event), :class => "btn btn-secondary mb-1" %>
 								</div>
 							</div>
 						</div>
