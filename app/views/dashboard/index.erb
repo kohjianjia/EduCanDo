@@ -1,35 +1,40 @@
-<div class="container-fluid" style="background-image: url(http://cpml.com.au/wp-content/uploads/2016/04/CPML-background21.jpg);">
+<body style="background-image: url(http://cpml.com.au/wp-content/uploads/2016/04/CPML-background21.jpg);">
+<div class="container-fluid" >
 	<div style="padding-left: 2%; padding-right: 3%">
-		<h2 style="margin-bottom: 2%">Dashboard</h2>
-
-
-
+		<h2 style="margin-top: 2%; margin-bottom: 2%">Dashboard</h2>
 
 		<div class="row">
 
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
-				<div class="card">
+				<div class="card" style="background-color: #ffffff99">
+				<img height="300" class="card-img-top" src="/assets/education.jpg" alt="Academic">
 				  <div class="card-body">
-				    <a href="/events/education"><h5 class="card-title text-dark">Education Events</h5></a>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+				    <a href="/events/education"><h5 class="card-title text-dark">Academic Events</h5></a>
+				    <p class="card-text">Lectures, presentations and all events related to academics.</p>
+
+				  </div>
+				</div>
+			</div>
+
+			<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4" >
+				<div class="card" style="background-color: #ffffff99">
+				<img height="300" class="card-img-top" src="/assets/sports2.jpg" alt="Sports">
+				  <div class="card-body">
+
+				    <a href="/events/sport"><h5 class="card-title text-dark">Sports Events</h5></a>
+				    <p class="card-text">Show some school spirit and support your school teams!</p>
+
 				  </div>
 				</div>
 			</div>
 
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
-				<div class="card">
-				  <div class="card-body">
-				    <a href="/events/sport"><h5 class="card-title text-dark">Sport Events</h5></a>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				  </div>
-				</div>
-			</div>
-
-			<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4">
-				<div class="card">
+				<div class="card" style="background-color: #ffffff99">
+				<img height="300" class="card-img-top" src="/assets/art.jpeg" alt="Art">
 				  <div class="card-body">
 				    <a href="/events/other"><h5 class="card-title text-dark">Other Events</h5></a>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <p class="card-text">Art. Food. Music.</p>
 				  </div>
 				</div>
 			</div>
@@ -39,7 +44,7 @@
 		<div class="row">
 
 			<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-				<div class="card">
+				<div class="card" style="background-color: #ffffff99">
 				  <div class="card-body">
 				    <h5 class="card-title">Upcoming Events</h5>
 				    <h6 class="card-text">
@@ -60,7 +65,7 @@
 			</div>
 
 			<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-				<div class="card">
+				<div class="card" style="background-color: #ffffff99">
 				  <div class="card-body">
 				    <h5 class="card-title">Redeemable Points</h5>
 				    <h5><strong><%= current_user.point %></strong></h5>
@@ -71,18 +76,37 @@
 			</div>
 
 			<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-				<div class="card">
+				<div class="card" style="background-color: #ffffff99">
 				  <div class="card-body">
-				    <a href="#"><h5 class="card-title text-dark">Staff Review</h5></a>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				     <h5 class="card-title">Top Ten Rated Events</h5></a>
+				     <div class="card-text">
+				     <p class="card-text">Check out the top ten events voted by you!</p>
+				     <% i = 1 %>
+				    	<% @event.each do |event| %>
+				    		<a href="/events/<%= event.id %>" class="btn btn-outline btn-sm text-dark" role="button" aria-pressed="true">
+				    		<%= i.to_s %>. <%= event.title %> |  <% if Rating.where(event_id: @event) %>
+								<% total_rate = Rating.where(event_id: @event).sum(:star) %>
+								<% if Rating.where(event_id: @event, star: (1..5)).count(:user_id) != 0 %>
+									<% average_rate = total_rate / Rating.where(event_id: @event, star: (1..5)).count(:user_id) %>
+
+									<% average_rate.times do |i| %>
+										<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png"  width="30" height="30">
+									<% end %>
+								<% end %>
+							<% end %> 
+				    		</a>
+				    		<br />
+				    		<% i += 1 %>
+				    	<% end %>
 				  </div>
 				</div>
 			</div>
+			</div>
 
 			<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-				<div class="card">
+				<div class="card" style="background-color: #ffffff99">
 				  <div class="card-body">
-				    <h5 class="card-title">Top 10</h5>
+				    <h5 class="card-title">Top 10 Students</h5>
 				    <div class="card-text">
 				    	<% i = 1 %>
 				    	<% @user.order("point DESC" ).limit(10).each do |user| %>
@@ -101,5 +125,4 @@
 
 	</div>
 </div>
-
-
+</body>
