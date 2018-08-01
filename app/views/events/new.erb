@@ -13,8 +13,10 @@
 
 			<div class="p-2 bd-highlight mt-2">
 			   <h3> <%= form.label :category %>:</h3>
-			   <%= form.radio_button :category, "class" %>
-			   Class/Lecture
+			   <% if current_user.role == "staff" %>
+				   <%= form.radio_button :category, "class" %>
+				   Class/Lecture
+			   <% end %>
 			   <%= form.radio_button :category, "presentation" %>
 			   Presentation
 			   <%= form.radio_button :category, "seminar" %>
