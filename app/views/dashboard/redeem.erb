@@ -1,0 +1,196 @@
+<body style="background-image: url(http://cpml.com.au/wp-content/uploads/2016/04/CPML-background21.jpg);">
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-3">
+
+          <div class="list-group animated infinite pulse delay-5s mt-2" style="position: fixed; font-family: courier new;">
+            <h1 class="my-4 animated infinite bounce delay-5s mt-2" style="font-family: impact; font-size: 60px">REWARDS</h1>
+            <p class="list-group-item" style="background-color: #FFFFFF99;">Name : <%= current_user.first_name %> <%= current_user.last_name %></p>
+            <p class="list-group-item" style="background-color: #FFFFFF99;">Role : <%= current_user.role %></p>
+            <p class="list-group-item" style="background-color: #FFFFFF99;">Total points : <%= current_user.point %></p>
+            <p class="list-group-item" style="background-color: #FFFFFF99;">Level : <%= current_user.level %></p>
+          </div>
+
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9">
+
+          <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+              <div class="carousel-item active">
+                <img class="d-block img-fluid" width="900" height="350" src="https://cdn.grab.com/my/wp-content/uploads/sites/8/2016/08/grabrewards_my_tile_dominos-1.jpg" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block img-fluid" width="900" height="350" src="https://cdn.grab.com/my/wp-content/uploads/sites/8/2016/08/grabrewards_my_tile_juiceworks-02_silver.jpg" alt="Second slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block img-fluid" width="900" height="350" src="https://cdn.grab.com/my/wp-content/uploads/sites/8/2016/08/grabrewards_my_tile_watsons.jpg" alt="Third slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+          <div class="row">
+
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100" style="background-color: #FFFFFF99;>
+                <a href="#"><img class="card-img-top" src="https://cdn.grab.com/my/wp-content/uploads/sites/8/2016/08/grabrewards_my_tile_juiceworks-02_member.jpg" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <p>Juice Works</p>
+                  </h4>
+                  <h5>50 points</h5>
+                  <p class="card-text">Juice Works' fruit juices are handcrafted with the freshest natural ingredients. Take your pick from a selection of refreshing, healthy beverages which are perfect for a hot day.</p>
+                </div>
+                <div class="card-footer">
+                <%= form_with scope: :user, url: redeem_points_path(name:50), local: true do |form| %>
+                  <div class="submit-field my-2">
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite shake delay-5s mt-2", :name =>"50" %>
+                  </div>
+                <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100" style="background-color: #FFFFFF99;>
+                <a href="#"><img class="card-img-top" src="https://cdn.grab.com/my/wp-content/uploads/sites/8/2016/08/grabrewards_my_tile_juiceworks-02_silver.jpg" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <p>Juice Works</p>
+                  </h4>
+                  <h5>100 points</h5>
+                  <p class="card-text">Juice Works’ fruit juices are handcrafted with the freshest natural ingredients. Take your pick from a selection of refreshing, healthy beverages which are perfect for a hot day.</p>
+                </div>
+                <div class="card-footer">
+                <%= form_with scope: :user, url: redeem_points_path(name:100), local: true do |form| %>
+                  <div class="submit-field my-2">
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite shake delay-5s mt-2" %>
+                  </div>
+                <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100" style="background-color: #FFFFFF99;>
+                <a href="#"><img class="card-img-top" src="https://cdn.grab.com/my/wp-content/uploads/sites/8/2016/08/grabrewards_my_tile_dominos-1.jpg" alt=""></a>
+                 <div class="card-body">
+                  <h4 class="card-title">
+                    <p>Dominos</p>
+                  </h4>
+                  <h5>200 points</h5>
+                  <p class="card-text">Domino’s serves freshly-made, delicious pizzas that’ll be delivered to your doorstep. Perfect for takeaways too. A meal best shared with family and friends.</p>
+                 </div>
+                <div class="card-footer">
+                <%= form_with scope: :user, url: redeem_points_path(name:200), local: true do |form| %>
+                  <div class="submit-field my-2">
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite shake delay-5s mt-2" %>
+                  </div>
+                <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100" style="background-color: #FFFFFF99;">
+                <a href="#"><img class="card-img-top" src="http://cdn7.bigcommerce.com/s-d32d6hqzrd/images/stencil/1280x1280/products/126/378/mystery-boxes-magicalunicorn_23987__88474.1517001732.jpg?c=2&imbypass=on" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <p>Mystery Box(S)</p>
+                  </h4>
+                  <h5>300 points</h5>
+                  <p class="card-text">Mystery Box is a box filled with random assortment of gifts for yourself. Everything from extra points, school merchandise, vouchers and many more! (S) comes with x1 item</p>
+                </div>
+                <div class="card-footer">
+                <%= form_with scope: :user, url: redeem_points_path(name:300), local: true do |form| %>
+                  <div class="submit-field my-2">
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite flash delay-5s mt-2" %>
+                  </div>
+                <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100" style="background-color: #FFFFFF99;">
+                <a href="#"><img class="card-img-top" src="http://cdn7.bigcommerce.com/s-d32d6hqzrd/images/stencil/1280x1280/products/126/378/mystery-boxes-magicalunicorn_23987__88474.1517001732.jpg?c=2&imbypass=on" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <p>Mystery Box(M)</p>
+                  </h4>
+                  <h5>500 points</h5>
+                  <p class="card-text">Mystery Box is a box filled with random assortment of gifts for yourself. Everything from extra points, school merchandise, vouchers and many more! (M) comes with x3 items</p>
+                </div>
+                <div class="card-footer">
+                <%= form_with scope: :user, url: redeem_points_path(name:500), local: true do |form| %>
+                  <div class="submit-field my-2">
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite flash delay-4s mt-2" %>
+                  </div>
+                <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100" style="background-color: #FFFFFF99;">
+                <a href="#"><img class="card-img-top" src="http://cdn7.bigcommerce.com/s-d32d6hqzrd/images/stencil/1280x1280/products/126/378/mystery-boxes-magicalunicorn_23987__88474.1517001732.jpg?c=2&imbypass=on" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <p>Mystery Box(L)</p>
+                  </h4>
+                  <h5>1000 points</h5>
+                  <p class="card-text">Mystery Box is a box filled with random assortment of gifts for yourself. Everything from extra points, school merchandise, vouchers and many more! (L) comes with x4 items</p>
+                </div>
+                <div class="card-footer">
+                <%= form_with scope: :user, url: redeem_points_path(name:1000), local: true do |form| %>
+                  <div class="submit-field my-2">
+                    <%= form.submit "Redeem now!", :class => "btn btn-info animated infinite flash delay-3s mt-2" %>
+                  </div>
+                <% end %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- /.row -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5" style="background-color: #64a19d;">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; EduCanDo 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
