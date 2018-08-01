@@ -1,44 +1,3 @@
-<!-- <div class="container-fluid mb-5" style="background-color: #fff">
-
-	<div style="padding-left: 2%; padding-right: 3%">
-
-		<div>
-			<h1 class="animated infinite bounce delay-2s" style="margin-top: 2%;">EDUCATION</h1>
-			<h5 class="animated fadeIn delay-5s">Why education field?</h5>
-			<p style="margin-bottom: 2%">Donec accumsan sagittis tortor, quis dictum justo dictum nec. Proin nunc quam, facilisis sed posuere sit amet, dapibus vitae turpis. Mauris malesuada turpis eget facilisis aliquet. Sed congue tristique sapien eu consectetur. Mauris iaculis auctor porttitor. Donec nec tortor urna. Pellentesque fermentum scelerisque fermentum.</p>
-		</div>
-
-		<div>
-			<hr />
-			<h1 style="margin-top: 2%;">WHAT</h1>
-			<h2>Low attendance</h2>
-			<p style="margin-bottom: 2%">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dolor enim, dictum id sapien ut, facilisis varius nulla. Nunc ac arcu sed erat blandit laoreet. Sed at purus gravida neque malesuada mollis. Aenean bibendum massa vitae nulla suscipit, sed lobortis orci tristique. Phasellus fermentum nisl et turpis tincidunt maximus sed sit amet risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In nulla elit, tempus sit amet nunc quis, porttitor rutrum massa. Aenean tristique sapien arcu. Cras hendrerit eu purus vitae ultricies. In laoreet nulla quis massa congue, at cursus tortor tincidunt. Nunc sagittis tristique metus vel sagittis.</p>
-		</div>
-
-		<div>
-			<hr />
-			<h1 style="margin-top: 2%;">WHY</h1>
-			<h2>No incentive for students to attend lectures</h2>
-			<p style="margin-bottom: 2%">Integer sollicitudin pharetra tortor, consectetur lobortis purus suscipit sed. Nam auctor eros neque, non auctor turpis volutpat at. Suspendisse sed dolor posuere nunc volutpat tincidunt sed placerat est. Curabitur et mauris pharetra, consectetur lorem eu, placerat dui. Curabitur tristique eleifend blandit. Praesent cursus dictum lorem, id malesuada quam dictum nec. Nulla sit amet consectetur neque. Phasellus vel orci nibh. Nam scelerisque libero nisi, ut venenatis felis varius at. Morbi ultricies augue purus, id pellentesque justo egestas nec. In in feugiat turpis. Morbi nec aliquam turpis.</p>
-		</div>
-
-		<div>
-			<hr />
-			<h1 style="margin-top: 2%;">WHO</h1>
-			<h2>Students and academics</h2>
-			<p style="margin-bottom: 2%">Nulla viverra pellentesque porta. Praesent posuere porta leo, ut vestibulum enim scelerisque eget. Phasellus dignissim tristique aliquam. Donec suscipit lacus quis fermentum accumsan. Praesent non nunc urna. Vestibulum fermentum quam sit amet est laoreet, quis molestie ex pharetra. Nam enim tortor, hendrerit sed sapien eu, volutpat tristique sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sit amet laoreet nisi, scelerisque tincidunt leo. Vivamus hendrerit erat ut nunc tempor porttitor. Fusce tincidunt quam enim, sed iaculis ex dignissim at. Morbi ac risus velit. Praesent ornare lacinia neque eget cursus. Integer eu tellus arcu. Proin rutrum, magna a volutpat mattis, dolor ante cursus purus, porta sollicitudin tellus dui ac dolor. Praesent facilisis, leo eu iaculis iaculis, sem arcu pulvinar velit, eu sollicitudin ex quam a ex.</p>
-		</div>
-
-		<div>
-			<hr />
-			<h1 style="margin-top: 2%;">HOW</h1>
-			<h2>Gamify</h2>
-			<p style="margin-bottom: 2%">Sed eu lectus condimentum, auctor justo maximus, semper erat. Curabitur ipsum libero, dignissim in justo quis, efficitur malesuada quam. Maecenas velit mauris, aliquam ut neque in, faucibus lobortis ante. Pellentesque imperdiet porta risus in placerat. Aenean consequat eros pellentesque arcu venenatis ultricies. Nam sit amet purus ligula. Proin nec magna interdum, rhoncus diam ut, finibus enim. Nullam non lorem aliquet, convallis lorem quis, fringilla nibh. Maecenas et sollicitudin enim, consequat tristique erat. Ut quam urna, facilisis eget velit ut, sollicitudin malesuada diam. Vivamus aliquam euismod mi, ac dignissim dolor rutrum ut. Proin pharetra imperdiet sapien, ut ultricies ligula faucibus vel. Integer laoreet tristique lectus sit amet euismod.</p>
-		</div>
-
-	</div>
-
-</div> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,13 +14,13 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/grayscale.min.css" rel="stylesheet">
-   <%= stylesheet_link_tag 'welcome' %>
+    <%= stylesheet_link_tag 'welcome' %>
 
   </head>
 
@@ -70,7 +29,11 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/sign_in">EduCanDo</a>
+        <% if signed_in? %>
+          <a class="navbar-brand js-scroll-trigger" href="/dashboard">EduCanDo</a>
+        <% else %>
+          <a class="navbar-brand js-scroll-trigger" href="/sign_in">EduCanDo</a>
+        <% end %>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -96,8 +59,8 @@
       <div class="container d-flex h-100 align-items-center ">
         <div class="mx-auto text-center">
           <h1 class="mx-auto my-0 text-uppercase">EduCanDo</h1>
-          <a href="/sign_up/student" class="btn btn-primary js-scroll-trigger mb-2">Get Started as a Student</a>
-          <a href="/sign_up/staff" class="btn btn-primary js-scroll-trigger mb-2">Get Started as a Staff</a>
+          <a href="/sign_up/student" class="btn btn-primary js-scroll-trigger mb-2 sr-icons">Get Started as a Student</a>
+          <a href="/sign_up/staff" class="btn btn-primary js-scroll-trigger mb-2 sr-icons">Get Started as a Staff</a>
         </div>
       </div>
     </header>
@@ -109,7 +72,7 @@
           <div class="col-lg-8 mx-auto">
             <h2 class="text-white mb-4">EDUCATION</h2>
             <h3 class="text-white mb-4">Why education field?</h3>
-            <p class="text-white-50">Donec accumsan sagittis tortor, quis dictum justo dictum nec. Proin nunc quam, facilisis sed posuere sit amet, dapibus vitae turpis. Mauris malesuada turpis eget facilisis aliquet. Sed congue tristique sapien eu consectetur. Mauris iaculis auctor porttitor. Donec nec tortor urna. Pellentesque fermentum scelerisque fermentum.</p>
+            <p class="text-white-50">Donec accumsan sagittis tortor, quis dictum justo dictum nec. Proin nunc quam, facilisis sed posuere sit amet, dapibus vitae turpis. Mauris malesuada turpis eget facilisis aliquet. Sed congue tristique sapien eu consectetur.</p>
           </div>
         </div>
         <img src="img/ipad.png" class="img-fluid" alt="">
@@ -120,19 +83,6 @@
     <section id="projects" class="projects-section bg-light backgroundimg">
       <div class="container ">
 
-        <!-- Featured Project Row -->
-<!--         <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-          <div class="col-xl-8 col-lg-7">
-            <img class="img-fluid mb-3 mb-lg-0" src="img/bg-masthead.jpg" alt="">
-          </div>
-          <div class="col-xl-4 col-lg-5">
-            <div class="featured-text text-center text-lg-left">
-              <h4>Shoreline</h4>
-              <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
-            </div>
-          </div>
-        </div> -->
-
         <!-- Project One Row -->
         <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
           <div class="col-lg-6">
@@ -142,9 +92,10 @@
             <div class="bg-black text-center h-100 project">
               <div class="d-flex h-100">
                 <div class="project-text w-100 my-auto text-center text-lg-left">
+                  <!-- <i class="text-white mb-3 sr-icons">WHAT</i> -->
                   <h4 class="text-white">WHAT</h4>
-                  <h5 class="text-white">Low attendance</h5>
-                  <p class="mb-0 text-white-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dolor enim, dictum id sapien ut, facilisis varius nulla. Nunc ac arcu sed erat blandit laoreet. Sed at purus gravida neque malesuada mollis.</p>
+                  <h5 class="text-white mb-3 sr-button">Low attendance</h5>
+                  <p class="mb-0 text-white-50 sr-button">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dolor enim, dictum id sapien ut, facilisis varius nulla. Nunc ac arcu sed erat blandit laoreet. Sed at purus gravida neque malesuada mollis.</p>
                   <hr class="d-none d-lg-block mb-0 ml-0">
                 </div>
               </div>
@@ -162,8 +113,8 @@
               <div class="d-flex h-100">
                 <div class="project-text w-100 my-auto text-center text-lg-right">
                   <h4 class="text-white">WHY</h4>
-                  <h5 class="text-white">No incentive for students to attend lectures</h5>
-                  <p class="mb-0 text-white-50">Integer sollicitudin pharetra tortor, consectetur lobortis purus suscipit sed. Nam auctor eros neque, non auctor turpis volutpat at.</p>
+                  <h5 class="text-white mb-3 sr-button">No incentive for students to attend lectures</h5>
+                  <p class="mb-0 text-white-50 sr-button">Integer sollicitudin pharetra tortor, consectetur lobortis purus suscipit sed. Nam auctor eros neque, non auctor turpis volutpat at.</p>
                   <hr class="d-none d-lg-block mb-0 mr-0">
                 </div>
               </div>
@@ -180,8 +131,8 @@
               <div class="d-flex h-100">
                 <div class="project-text w-100 my-auto text-center text-lg-left">
                   <h4 class="text-white">WHO</h4>
-                  <h5 class="text-white">Students and academics</h5>
-                  <p class="mb-0 text-white-50">Integer sollicitudin pharetra tortor, consectetur lobortis purus suscipit sed. Nam auctor eros neque, non auctor turpis volutpat at. </p>
+                  <h5 class="text-white mb-3 sr-button">Students and academics</h5>
+                  <p class="mb-0 text-white-50 sr-button">Integer sollicitudin pharetra tortor, consectetur lobortis purus suscipit sed. Nam auctor eros neque, non auctor turpis volutpat at. </p>
                   <hr class="d-none d-lg-block mb-0 ml-0">
                 </div>
               </div>
@@ -199,8 +150,8 @@
               <div class="d-flex h-100">
                 <div class="project-text w-100 my-auto text-center text-lg-right">
                   <h4 class="text-white">HOW</h4>
-                  <h5 class="text-white">Gamify</h5>
-                  <p class="mb-0 text-white-50">Sed eu lectus condimentum, auctor justo maximus, semper erat. Curabitur ipsum libero, dignissim in justo quis, efficitur malesuada quam.</p>
+                  <h5 class="text-white mb-3 sr-button">Gamify</h5>
+                  <p class="mb-0 text-white-50 sr-button">Redeemable point system</p>
                   <hr class="d-none d-lg-block mb-0 mr-0">
                 </div>
               </div>
@@ -211,25 +162,6 @@
       </div>
     </section>
 
-    <!-- contact Section -->
-<!--     <section id="contact" class="contact-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-10 col-lg-8 mx-auto text-center">
-
-            <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-            <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
-
-            <form class="form-inline d-flex">
-              <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Enter email address...">
-              <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
-            </form>
-
-          </div>
-        </div>
-      </div>
-    </section> -->
-
     <!-- Contact Section -->
     <section class="contact-section bg-black" id="contact">
       <div class="container">
@@ -239,21 +171,9 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Address</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">A-G-7 Glomac Damansara,Jalan Damansara,60000 Kuala Lumpur.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 mb-3 mb-md-0">
-            <div class="card py-4 h-100">
-              <div class="card-body text-center">
-                <h4 class="text-uppercase m-0">Email</h4>
-                <hr class="my-4">
+                <i class="fa fa-globe fa-3x mb-3 sr-contact"></i>
                 <div class="small text-black-50">
-                  <a href="#">hello@nextacademy.com</a>
+                  <h6>A-G-7 Glomac Damansara, Jalan Damansara, 60000 Kuala Lumpur.</h6>
                 </div>
               </div>
             </div>
@@ -262,10 +182,23 @@
           <div class="col-md-4 mb-3 mb-md-0">
             <div class="card py-4 h-100">
               <div class="card-body text-center">
-                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                <h4 class="text-uppercase m-0">Phone</h4>
-                <hr class="my-4">
-                <div class="small text-black-50">+6011 3704 7061</div>
+                <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
+                <div class="small text-black-50">
+                  <h6><a href="mailto:hello@nextacademy.com">hello@nextacademy.com</a></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3 mb-md-0">
+            <div class="card py-4 h-100">
+              <div class="card-body text-center">
+                
+                <i class="fa fa-phone fa-3x mb-3 sr-contact"></i>
+                
+                <div class="small text-black-50">
+                  <h6>+6011 3704 7061</h6>
+                </div>
               </div>
             </div>
           </div>
@@ -280,14 +213,7 @@
         Copyright &copy; EduCanDo 2018
       </div>
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
+    
     <!-- Custom scripts for this template -->
     <script src="js/grayscale.min.js"></script>
 
