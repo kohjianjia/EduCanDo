@@ -1,55 +1,55 @@
 <body class="hello">
-<div class="container-fluid my-5"><br>
-	<div class="row">
-	  <div class="col-sm-6" style="margin: auto;">
-	    <div class="card" style=" background-color: #FFFFFF99; border-radius: 15px">
-	      <h4 class="card-header text-right text-white" style="background-color: #64a19d;"><%= @user.first_name %> <%= @user.last_name %>
-	      <div class="float-left small">
-					<% if @user.role == "student" %>
-						<h6>Total Points: <%= @user.point %></h6>
-						<h6>Level: 
-							<% if @user.level == "Plastic" %>
-								<img src="http://pngimg.com/uploads/star/star_PNG41467.png" style="margin-left: 7px; height: 40px; width: 40px;">
-							<% elsif @user.level == "Bronze" %>
-								<img src="https://vignette.wikia.nocookie.net/acnewleaf/images/0/0a/Bronze_star_icon.png/revision/latest?cb=20131011063242g" style="margin-left: 7px; height: 40px; width: 40px;">
-							<% elsif @user.level == "Silver" %>
-								<img src="http://pngimg.com/uploads/star/star_PNG41509.png" style="margin-left: 7px; height: 40px; width: 40px;">
-							<% elsif @user.level == "Gold" %>
-								<img src="http://pngimg.com/uploads/star/star_PNG41518.png" style="margin-left: 7px; height: 40px; width: 40px;">
-							<% else %>
-								<img src="https://www.freeiconspng.com/uploads/blue-star-icon-7.png" style="margin-left: 7px; height: 40px; width: 40px;">
-							<% end %>
-						</h6>
-					<% else %>
-						<h5><strong>Rating: </strong></h5>
-					<% end %>
-	      </div>
-	      </h4>
-	      <div class="card-body text-center" style="border-radius: 10px">
-	        <h6 class="card-title"><strong>Email: </strong><%= @user.email %></h6>
-					<h6 class="card-title"><strong>Role: </strong><%= @user.role %></h6>
-					<hr>
-	       	<div class="card-text">
-						<h5>
-						<% if @user.id != current_user.id %>
-							Events hosted by <%= @user.first_name %>
+	<div class="container-fluid my-5"><br>
+		<div class="row">
+		  	<div class="col-sm-6" style="margin: auto;">
+			    <div class="card" style=" background-color: #FFFFFF99; border-radius: 15px">
+			      	<h4 class="card-header text-right text-white" style="background-color: #64a19d;"><%= @user.first_name %> <%= @user.last_name %>
+			      	<div class="float-left small">
+						<% if @user.role == "student" %>
+							<h6>Total Points: <%= @user.point %></h6>
+							<h6>Level: 
+								<% if @user.level == "Plastic" %>
+									<img src="http://pngimg.com/uploads/star/star_PNG41467.png" style="margin-left: 7px; height: 40px; width: 40px;">
+								<% elsif @user.level == "Bronze" %>
+									<img src="https://vignette.wikia.nocookie.net/acnewleaf/images/0/0a/Bronze_star_icon.png/revision/latest?cb=20131011063242g" style="margin-left: 7px; height: 40px; width: 40px;">
+								<% elsif @user.level == "Silver" %>
+									<img src="http://pngimg.com/uploads/star/star_PNG41509.png" style="margin-left: 7px; height: 40px; width: 40px;">
+								<% elsif @user.level == "Gold" %>
+									<img src="http://pngimg.com/uploads/star/star_PNG41518.png" style="margin-left: 7px; height: 40px; width: 40px;">
+								<% else %>
+									<img src="https://www.freeiconspng.com/uploads/blue-star-icon-7.png" style="margin-left: 7px; height: 40px; width: 40px;">
+								<% end %>
+							</h6>
 						<% else %>
-							Events hosted by you: 
+							<h5><strong>Rating: </strong></h5>
 						<% end %>
-						</h5>
-			    	<% i = 1 %>
-						<% @user.events.order(event_date: :desc, start_time: :desc).limit(3).each do |event| %>
-			      		<a href="/events/<%= event.id %>" class="btn btn-outline btn-sm text-dark" role="button" aria-pressed="true">
-						  <%= i.to_s %>. <%= event.title %> 
-			      		</a>
-			      		<br/>
-			      		<% i += 1 %>
+			      	</div>
+			      	</h4>
+			      	<div class="card-body text-center" style="border-radius: 10px">
+				        <h6 class="card-title"><strong>Email: </strong><%= @user.email %></h6>
+						<h6 class="card-title"><strong>Role: </strong><%= @user.role %></h6>
+						<hr>
+			       		<div class="card-text">
+							<h5>
+								<% if @user.id != current_user.id %>
+									Events hosted by <%= @user.first_name %>
+								<% else %>
+									Events hosted by you: 
+								<% end %>
+							</h5>
+				    		<% i = 1 %>
+							<% @user.events.order(event_date: :desc, start_time: :desc).limit(3).each do |event| %>
+								<%= i.to_s %>. 
+					      		<a href="/events/<%= event.id %>" class="card-title text-dark">
+								  <%= event.title %> 
+					      		</a>
+					      		<br/>
+					      		<% i += 1 %>
 							<% end %>
 							<% if @user.id == current_user.id %>
 								<a href="/events/history" class="btn btn-outline-secondary mt-2 btn-sm ml-2">Your event list</a>
 							<% end %>
 						</div>
-
 						<% if @user.id == current_user.id %> 
 							<hr>
 							<div class="card-text">
@@ -58,20 +58,19 @@
 								</h5>
 					    	<% i = 1 %>
 								<% @attended.limit(3).each do |attend| %>
-					      		<a href="/events/<%= attend.event_id %>" class="btn btn-outline btn-sm text-dark" role="button" aria-pressed="true">
-								  <%= i.to_s %>. <%= attend.event.title %> 
-					      		</a>
-					      		<br />
-					      		<% i += 1 %>
+									<%= i.to_s %>. 
+						      		<a href="/events/<%= attend.event_id %>" class="card-title text-dark">
+									  <%= attend.event.title %> 
+						      		</a>
+						      		<br />
+						      		<% i += 1 %>
 								<% end %>
 								<a href="/attendances" class="btn btn-outline-secondary mt-2 btn-sm ml-2">Your attendance list</a>
 							</div>
 						<% end %>
-
-
-	    		</div>
-	  	</div>
-		</div>
-	</div>   
-</div>
+			    	</div>
+			  	</div>
+			</div>
+		</div>   
+	</div>
 </body>

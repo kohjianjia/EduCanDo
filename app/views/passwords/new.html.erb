@@ -1,20 +1,19 @@
-<div class="container-fluid mb-5" style="background-color: #fff">
-
-  <div id="clearance" class="container password-reset" style="margin-top: 2%;">
-    <h2><%= t(".title") %></h2>
-
-    <p><%= t(".description") %></p>
-
-    <%= form_for :password, url: passwords_path do |form| %>
-      <div class="text-field">
-        <%= form.label :email %>
-        <%= form.text_field :email, type: 'email' %>
+<body style="background-image: url(http://cpml.com.au/wp-content/uploads/2016/04/CPML-background21.jpg);">
+  <div class="container-fluid">
+    <div id="clearance" class="container password-reset animated zoomIn delay-2s fast" style="margin-top: 21vh;">
+      <div style="background-color: #64A19DB3; border-radius: 15px; width: 300px; padding: 50px; margin: auto;">
+        <h2><%= t(".title") %></h2>
+        <p><%= t(".description") %></p>
+        <%= form_for :password, url: passwords_path do |form| %>
+          <div class="text-field">
+            <%= form.label :email %>
+            <%= form.text_field :email, type: 'email' %>
+          </div>
+          <div class="submit-field mt-3">
+            <%= form.submit :class => "btn btn-info" %>
+          </div>
+        <% end %>
       </div>
-
-      <div class="submit-field">
-        <%= form.submit :class => "btn btn-info" %>
-      </div>
-    <% end %>
+    </div>
   </div>
-
-</div>
+</body>
