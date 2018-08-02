@@ -1,12 +1,4 @@
-// Place all the styles related to the Welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
-/*!
- * Start Bootstrap - Grayscale v5.0.1 (https://startbootstrap.com/template-overviews/grayscale)
- * Copyright 2013-2018 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-grayscale/blob/master/LICENSE)
- */
 
 #mainNav {
   min-height: 56px;
@@ -35,7 +27,7 @@
   outline: none;
   background-color: transparent;
 }
-
+s
 #mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
   outline: none;
   background-color: transparent;
