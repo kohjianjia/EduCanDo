@@ -19,7 +19,7 @@
 
 			<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-4" >
 				<div class="card shadow-lg" style="background-color: #ffffff99">
-				<%= image_tag "sports2.jpg", class: "card-img-top", height: "300" %>
+				<%= image_tag "sportsss.jpg", class: "card-img-top", height: "300" %>
 				  <div class="card-body">
 
 				    <a href="/events/sport"><h5 class="card-title text-dark">Sports Events</h5></a>
@@ -92,7 +92,7 @@
 				    		<div class="mb-3 ml-2">
 								<% average_rate = event.average_rating %>
 								<% average_rate.times do |i| %>
-									<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png"  width="30" height="30">
+									<%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png", width:"30", height:"30" %>
 								<% end %>
 					    	<br />
 				    		</div>

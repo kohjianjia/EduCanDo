@@ -24,7 +24,7 @@
 											<% average_rate = total_rate / Rating.where(event_id: @event, star: (1..5)).count(:user_id) %>
 
 											<% average_rate.times do |i| %>
-												<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png"  width="30" height="30">
+												<%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png", width:"30", height:"30" %>
 											<% end %>
 										<% end %>
 									<% end %>
@@ -132,7 +132,7 @@
 									<% num_of_stars = rating.star %>
 
 									<% num_of_stars.times do |i| %>
-										<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png"  width="25" height="25">
+										<%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/1024px-Gold_Star.svg.png", width:"25", height:"25" %>
 									<% end %>
 
 									<hr />
