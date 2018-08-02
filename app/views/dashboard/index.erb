@@ -49,7 +49,7 @@
 				    <h5 class="card-title">Upcoming Events</h5>
 				    <h6 class="card-text">
 				    	<% i = 1 %>
-				    	<% @event.order("created_at DESC" ).limit(10).each do |event| %>
+				    	<% @event.order(event_date: :desc, start_time: :desc).limit(10).each do |event| %>
 				    		<a href="/events/<%= event.id %>" class="btn btn-outline btn-sm text-dark" role="button" aria-pressed="true">
 				    			<%= i.to_s %>. <%= event.title %> 
 				    		</a>
@@ -78,11 +78,11 @@
 			<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
 				<div class="card" style="background-color: #ffffff99">
 				  <div class="card-body">
-				     <h5 class="card-title">Top Ten Rated Events</h5></a>
+				     <h5 class="card-title">Top 10 Rated Events</h5></a>
 				     <div class="card-text">
 				     <p class="card-text">Check out the top ten events voted by you!</p>
 				     <% i = 1 %>
-				    	<% @event.each do |event| %>
+				    	<% @event.limit(10).each do |event| %>
 				    		<a href="/events/<%= event.id %>" class="btn btn-outline btn-sm text-dark" role="button" aria-pressed="true">
 				    		<%= i.to_s %>. <%= event.title %> |  <% if Rating.where(event_id: @event) %>
 								<% total_rate = Rating.where(event_id: @event).sum(:star) %>
@@ -109,7 +109,7 @@
 				    <h5 class="card-title">Top 10 Students</h5>
 				    <div class="card-text">
 				    	<% i = 1 %>
-				    	<% @user.order("point DESC" ).limit(10).each do |user| %>
+				    	<% @user.order("point DESC").limit(10).each do |user| %>
 				    		<a href="/users/<%= user.id %>" class="btn btn-outline btn-sm text-dark" role="button" aria-pressed="true">
 				    			<%= i.to_s %>. <%= user.first_name %> <%= user.last_name %> |  <%= user.point%> points
 				    		</a>

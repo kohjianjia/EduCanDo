@@ -14,7 +14,7 @@ class DashboardController < ApplicationController
 		if current_user.point >= params[:name].to_i 
 		@user.point = current_user.point - params[:name].to_i
 		@user.save
-		flash[:success] = "You've sucessfully redeemed, #{params[:name]} points have deducted "
+		flash[:success] = "You've sucessfully redeemed, #{params[:name]} points have been deducted. Your redemption details will be emailed to you shortly."
 		redirect_back(fallback_location: root_path)
 		else
 			flash[:success] = "You don't have #{params[:name]} points yet "

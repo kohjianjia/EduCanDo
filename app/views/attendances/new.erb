@@ -3,8 +3,8 @@
 
 		<div class="container" style="margin-top: 2%;">
 				<div class="row">
-							<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" style="margin: auto; margin-top: 20vh; margin-left: 50vh">
-								<div class="card" style="background-color: #FFFFFF99; width: 500px;">
+							<div class="mb-4" style="margin: auto; margin-top: 20vh;">
+								<div class="card" style="background-color: #FFFFFF99; width: 45vw;">
 									<div class="card-body text-center" >
 											<% if !(Attendance.find_by(user_id: current_user.id,event_id: @event.id)) %>
 												<%= form_with scope: :attendance, url: event_attendances_path, local: true do |form| %>

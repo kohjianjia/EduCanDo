@@ -1,62 +1,3 @@
-<!-- <div class="container-fluid mb-5" style="background-color: #fff">
-
-	<div class="container" style="margin-top: 2%;">
-
-		<div class="row">
-			<div class="col-md-8 text-justify">
-				<h5 class="text-capitalize"><strong>Full Name: </strong><%= @user.first_name + " " + @user.last_name %></h5>
-				<h5><strong>Email: </strong><%= @user.email %></h5>
-				<h5><strong>Role: </strong><%= @user.role %></h5>
-				<% if @user.role == "student" %>
-					<h5><strong>Total Points: <%= @user.point %></strong></h5>
-					<h5><strong>Level: <%= @user.level %></strong></h5>
-				<% else %>
-					<h5><strong>Rating: </strong></h5>
-				<% end %>
-			</div>
-		</div>
-
-		<hr />
-
-		<div>
-			<h5>
-				Events hosted by you: 
-				<a href="#" class="btn btn-info btn-sm ml-2">Your event list</a>
-			</h5>
-	    	<% i = 1 %>
-			<% @user.events.each do |event| %>
-	      		<a href="/events/<%= event.id %>" class="btn btn-outline btn-sm" role="button" aria-pressed="true">
-				  <%= i.to_s %>. <%= event.title %> 
-	      		</a>
-	      		<br />
-	      		<% i += 1 %>
-			<% end %>
-		</div>
-
-		<hr />
-
-		<div>
-			<h5>
-				Attended events: 
-				<a href="/attendances" class="btn btn-info btn-sm ml-2">Your attendance list</a>
-			</h5>
-	    	<% i = 1 %>
-			<% @attended.each do |attend| %>
-	      		<a href="/events/<%= attend.event_id %>" class="btn btn-outline btn-sm" role="button" aria-pressed="true">
-				  <%= i.to_s %>. <%= attend.event.title %> 
-	      		</a>
-	      		<br />
-	      		<% i += 1 %>
-			<% end %>
-		</div>
-
-	</div>
-
-</div>
-
-     -->
-
-
 <body class="hello">
 <div class="container-fluid my-5"><br>
 	<div class="row">
@@ -66,7 +7,19 @@
 	      <div class="float-left small">
 					<% if @user.role == "student" %>
 						<h6>Total Points: <%= @user.point %></h6>
-						<h6>Level: <%= @user.level %></h6>
+						<h6>Level: 
+							<% if @user.level == "Plastic" %>
+								<img src="http://pngimg.com/uploads/star/star_PNG41467.png" style="margin-left: 7px; height: 40px; width: 40px;">
+							<% elsif @user.level == "Bronze" %>
+								<img src="https://vignette.wikia.nocookie.net/acnewleaf/images/0/0a/Bronze_star_icon.png/revision/latest?cb=20131011063242g" style="margin-left: 7px; height: 40px; width: 40px;">
+							<% elsif @user.level == "Silver" %>
+								<img src="http://pngimg.com/uploads/star/star_PNG41509.png" style="margin-left: 7px; height: 40px; width: 40px;">
+							<% elsif @user.level == "Gold" %>
+								<img src="http://pngimg.com/uploads/star/star_PNG41518.png" style="margin-left: 7px; height: 40px; width: 40px;">
+							<% else %>
+								<img src="https://www.freeiconspng.com/uploads/blue-star-icon-7.png" style="margin-left: 7px; height: 40px; width: 40px;">
+							<% end %>
+						</h6>
 					<% else %>
 						<h5><strong>Rating: </strong></h5>
 					<% end %>
@@ -78,19 +31,27 @@
 					<hr>
 	       	<div class="card-text">
 						<h5>
-						Events hosted by you: 
+						<% if @user.id != current_user.id %>
+							Events hosted by <%= @user.first_name %>
+						<% else %>
+							Events hosted by you: 
+						<% end %>
 						</h5>
 			    	<% i = 1 %>
-						<% @user.events.limit(3).each do |event| %>
+						<% @user.events.order(event_date: :desc, start_time: :desc).limit(3).each do |event| %>
 			      		<a href="/events/<%= event.id %>" class="btn btn-outline btn-sm text-dark" role="button" aria-pressed="true">
 						  <%= i.to_s %>. <%= event.title %> 
 			      		</a>
 			      		<br/>
 			      		<% i += 1 %>
 							<% end %>
-							<a href="/events/history" class="btn btn-outline-secondary mt-2 btn-sm ml-2">Your event list</a>
+							<% if @user.id == current_user.id %>
+								<a href="/events/history" class="btn btn-outline-secondary mt-2 btn-sm ml-2">Your event list</a>
+							<% end %>
 						</div>
-						<hr>
+
+						<% if @user.id == current_user.id %> 
+							<hr>
 							<div class="card-text">
 								<h5>
 								Attended events: 
@@ -103,8 +64,11 @@
 					      		<br />
 					      		<% i += 1 %>
 								<% end %>
-								<a href="/attendances" class="btn btn-outline-secondary btn-sm ml-2">Your attendance list</a>
+								<a href="/attendances" class="btn btn-outline-secondary mt-2 btn-sm ml-2">Your attendance list</a>
 							</div>
+						<% end %>
+
+
 	    		</div>
 	  	</div>
 		</div>
