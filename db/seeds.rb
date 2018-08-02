@@ -35,13 +35,13 @@ ActiveRecord::Base.transaction do
     event['category'] = ["class", "presentation", "seminar", "sport", "other"].sample
 
     event['description'] = Faker::Hipster.sentence
-    event['venue'] = Faker::University.name
+    event['venue'] = ["1 Utama", "Cheedi's Field", "Suria Sabah", "KFUPM Mall", "JJ's Workshop", "BEN Independent Cafe", "Picolli Lotti", "Xin's Hiking School", "Emika's Map Cafe", "Erwhey's Kendama School"].sample
 
     event['event_date'] = Faker::Date.forward(60)
     event['start_time'] = ["08:00","08:10", "08:20", "08:30", "08:40"].sample
     event['end_time'] = ["09:40","09:50", "10:00", "10:10", "10:30"].sample
-     
-
+    event['latitude'] = [3.101456].sample
+    event['longitude'] = [101.571269].sample
 
     event['user_id'] = uids.sample
 
