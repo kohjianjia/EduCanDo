@@ -3,7 +3,8 @@ class DashboardController < ApplicationController
 		@event = Event.all
 		@user = User.where(role: "student")
 		@attendees = Attendance.where(event_id: @event)
-	end
+		@top_events = Event.sorted_by_average_rating
+ 	end
 
 	def redeem
 		@user = User.find(current_user.id)
