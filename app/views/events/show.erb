@@ -77,7 +77,11 @@
 								<h6 class="mt-3">The event has yet to begin.</h6>
 							<% else %>
 								<%= link_to 'Click to Attend', new_event_attendance_path(@event), :id => "mark_attendance", :class => "btn btn-success" %>
-								<h5 style="margin-top: 2vh" id="no_match"><strong>You are not allowed to mark attendance because you are not at the venue yet!</strong></h5>
+								<button id="no" type="button" class="btn btn-secondary" disabled>Click to Attend</button>
+								<h6 style="margin-top: 2vh" id="no_match">
+									<img src="http://www.clker.com/cliparts/8/3/3/4/1195445190322000997molumen_red_round_error_warning_icon.svg.hi.png" style="height: 18px; width: 18px;">
+									<strong>You are not allowed to mark attendance because you are not at the venue yet!</strong>
+								</h6>
 							<% end %>
 						<% end %>
 					<% else %>
@@ -231,6 +235,7 @@
 	        // }
 
 		    $('#mark_attendance').hide();
+		    $('#no').hide();
 		    $('#no_match').hide();
 
 		    // Get variables storing student coordinates
@@ -275,6 +280,7 @@
 	            if (getDistanceFromLatLonInKm(teacherLat,teacherLong,pos.currentLatitude,pos.currentLongitude)<=0.1) {
 					$('#mark_attendance').show();
 				} else {
+					$('#no').show();
 					$('#no_match').show();
 				}
 
