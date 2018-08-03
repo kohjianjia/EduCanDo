@@ -220,15 +220,15 @@
     <script>
     	$(document).ready(function(){
 		    var pos = "";
-		    var map, infoWindow;
+		    // var map, infoWindow;
 
-	        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-	            infoWindow.setPosition(pos);
-	            infoWindow.setContent(browserHasGeolocation ?
-	                              'Error: The Geolocation service failed.' :
-	                              'Error: Your browser doesn\'t support geolocation.');
-	            infoWindow.open(map);
-	        }
+	        // function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+	        //     infoWindow.setPosition(pos);
+	        //     infoWindow.setContent(browserHasGeolocation ?
+	        //                       'Error: The Geolocation service failed.' :
+	        //                       'Error: Your browser doesn\'t support geolocation.');
+	        //     infoWindow.open(map);
+	        // }
 
 		    $('#mark_attendance').hide();
 		    $('#no_match').hide();
@@ -279,12 +279,12 @@
 				}
 
 	          }, function() {
-	            handleLocationError(true, infoWindow, map.getCenter());
+	            // handleLocationError(true, infoWindow, map.getCenter());
 	          });
 	        } else {
 	          // Browser doesn't support Geolocation
 	          alert('Geolocation is not supported for this Browser/OS version yet.');
-	          handleLocationError(false, infoWindow, map.getCenter());
+	          // handleLocationError(false, infoWindow, map.getCenter());
 	        };
 
 		});
