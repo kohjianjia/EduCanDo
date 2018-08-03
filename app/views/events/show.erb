@@ -261,14 +261,6 @@
 			  return deg * (Math.PI/180)
 			}
 
-	        // Try HTML5 geolocation.
-	        if (navigator.geolocation) {
-			  alert('Geolocation is supported!');
-			}
-			else {
-			  alert('Geolocation is not supported for this Browser/OS version yet.');
-			}
-
 	        if (navigator.geolocation) {
 	           navigator.geolocation.getCurrentPosition(function(position) {
 	            pos = {
@@ -291,6 +283,7 @@
 	          });
 	        } else {
 	          // Browser doesn't support Geolocation
+	          alert('Geolocation is not supported for this Browser/OS version yet.');
 	          handleLocationError(false, infoWindow, map.getCenter());
 	        };
 
