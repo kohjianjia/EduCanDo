@@ -11,7 +11,7 @@
 				  <div class="card-body">
 
 				    <a href="/events/education"><h5 class="card-title text-dark">Academic Events</h5></a>
-				    <p class="card-text">Lectures, presentations and all events related to academics.</p>
+				    <p class="card-text">Lectures, presentations and events related to academics.</p>
 
 				  </div>
 				</div>
@@ -72,7 +72,7 @@
 				    <h5 class="card-title">Redeemable Points</h5>
 				    <h5><strong><%= current_user.point %></strong></h5>
 				    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-				    <a href="/redeem" class="btn btn-info animated infinite tada delay-2s mt-2" style="margin-left: 2%">Redeem now!</a>
+				    <a href="/redemption" class="btn btn-info animated infinite tada delay-2s mt-2" style="margin-left: 2%">Redeem now!</a>
 				  </div>
 				</div>
 			</div>
@@ -80,9 +80,9 @@
 			<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
 				<div class="card shadow-lg" style="background-color: #ffffff99">
 				  <div class="card-body">
-				     <h5 class="card-title">Top 5 Rated Events</h5></a>
+				     <h5 class="card-title">Top 5 Events</h5></a>
 				     <div class="card-text">
-				     <p class="card-text">Check out the top ten events voted by you!</p>
+				     <p class="card-text">Check out the top events rated by you!</p>
 				     <% i = 1 %>
 				    	<% @top_events.each do |event| %>
 				    		<%= i.to_s %>.

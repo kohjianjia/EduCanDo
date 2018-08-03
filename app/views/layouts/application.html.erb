@@ -96,8 +96,12 @@
             </li> 
             <%= link_to t(".sign_out"), sign_out_path, method: :delete,    :class => "nav-link" %>
           </li>
-        </ul>
-      <% end %>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="/faq">FAQ</a>
+          </li> 
+        <% end %>
+      </ul>
     </form>
   </div>
 </nav>

@@ -219,49 +219,56 @@
 	<!-- attendee's location -->
     <script>
     	$(document).ready(function(){
-	      var pos = "";
-	      var map, infoWindow;
+		    var pos = "";
+		    var map, infoWindow;
 
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-            infoWindow.open(map);
-        }
+	        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+	            infoWindow.setPosition(pos);
+	            infoWindow.setContent(browserHasGeolocation ?
+	                              'Error: The Geolocation service failed.' :
+	                              'Error: Your browser doesn\'t support geolocation.');
+	            infoWindow.open(map);
+	        }
 
-	    $('#mark_attendance').hide();
-	    $('#no_match').hide();
+		    $('#mark_attendance').hide();
+		    $('#no_match').hide();
 
-	    // Get variables storing student coordinates
-	       // pos => hash with latitude and longtitude
+		    // Get variables storing student coordinates
+		       // pos => hash with latitude and longtitude
 
-	    // Get information from hidden field of teacher's coordinates
-	    var teacherLat = document.getElementById("lat").value;
-	    var teacherLong = document.getElementById("long").value;
+		    // Get information from hidden field of teacher's coordinates
+		    var teacherLat = document.getElementById("lat").value;
+		    var teacherLong = document.getElementById("long").value;
 
-	    // Plug them into pythagorean theorem in an if/else statement
-	        // if distance is small enough
+		    // Plug them into pythagorean theorem in an if/else statement
+		        // if distance is small enough
 
-        // distance
-        function getDistanceFromLatLonInKm(teacherLat,teacherLong,currentLatitude,currentLongitude) {
-		  var R = 6371; // Radius of the earth in km
-		  var dLat = deg2rad(currentLatitude-teacherLat);  // deg2rad below
-		  var dLon = deg2rad(currentLongitude-teacherLong); 
-		  var a = 
-		    Math.sin(dLat/2) * Math.sin(dLat/2) +
-		    Math.cos(deg2rad(teacherLat)) * Math.cos(deg2rad(currentLatitude)) * 
-		    Math.sin(dLon/2) * Math.sin(dLon/2); 
-		  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-		  var d = R * c; // Distance in km
-		  return d;
-		}
+	        // distance
+	        function getDistanceFromLatLonInKm(teacherLat,teacherLong,currentLatitude,currentLongitude) {
+			  var R = 6371; // Radius of the earth in km
+			  var dLat = deg2rad(currentLatitude-teacherLat);  // deg2rad below
+			  var dLon = deg2rad(currentLongitude-teacherLong); 
+			  var a = 
+			    Math.sin(dLat/2) * Math.sin(dLat/2) +
+			    Math.cos(deg2rad(teacherLat)) * Math.cos(deg2rad(currentLatitude)) * 
+			    Math.sin(dLon/2) * Math.sin(dLon/2); 
+			  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+			  var d = R * c; // Distance in km
+			  return d;
+			}
 
-		function deg2rad(deg) {
-		  return deg * (Math.PI/180)
-		}
+			function deg2rad(deg) {
+			  return deg * (Math.PI/180)
+			}
 
 	        // Try HTML5 geolocation.
+	        if (navigator.geolocation) {
+			  alert('Geolocation is supported!');
+			}
+			else {
+			  alert('Geolocation is not supported for this Browser/OS version yet.');
+			}
+
 	        if (navigator.geolocation) {
 	           navigator.geolocation.getCurrentPosition(function(position) {
 	            pos = {
