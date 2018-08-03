@@ -38,7 +38,7 @@ class AttendancesController < ApplicationController
 			
 			@attendance.update(egg: true)
 			
-		  	flash[:extra] = "You've earned #{@random} points!"
+		  	flash[:extra] = "You've earned extra #{@random} points!"
 		  	redirect_to @event
 		end
 	end
